@@ -4,6 +4,7 @@ import JoinPage from '../pages/JoinPage'
 import MainPage from '../pages/MainPage'
 import LoginPage from '../pages/LoginPage'
 import DetailsPage from '../pages/DetailsPage'
+import AdminPage from '../pages/AdminPage'
 
 const Router = () => {
   return (
@@ -13,6 +14,7 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/join' element={<JoinPage />} />
         <Route path='/details/:id' element={<DetailsPage />} />
+        <Route path='/admin' element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   )
