@@ -9,7 +9,7 @@ const MainPage = () => {
   return (
     <div>
       <StContainerDiv>
-        <div>
+        <StSearchImgDiv>
           <StMainImg
             src=''
             onClick={() => {
@@ -24,7 +24,7 @@ const MainPage = () => {
               }}
             />
           </StFaSearchDiv>
-        </div>
+        </StSearchImgDiv>
         <h2>category1</h2>
         <div>
           <StCategory1Div>
@@ -77,6 +77,11 @@ const StContainerDiv = styled.div`
   margin-top: 50px;
 `
 
+const StSearchImgDiv = styled.div`
+  position: relative;
+  padding: 16px;
+`
+
 const StMainImg = styled.img`
   position: relative;
   height: 450px;
@@ -87,8 +92,8 @@ const StMainImg = styled.img`
 
 const StFaSearchDiv = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -5px;
+  right: 16px;
 `
 
 const StCategoryInput = styled.div`
