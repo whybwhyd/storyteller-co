@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react'
 import * as St from '../style/StWriteStyled'
 import DefaultImg from '../assets/DefaultImg.png'
+import Select from '../components/Select'
 import { doc, setDoc } from 'firebase/firestore'
-import { getDownloadURL, ref, uploadBytes, uploadString } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage, db } from '../firebase'
 import { WriteButton, UpButton } from '../components/Button'
 import { useNavigate } from 'react-router-dom'
@@ -40,10 +41,16 @@ const Write = () => {
   const deleteImg = () => {
     setImgFile('')
   }
+  const handleSaveOption = (option) => {
+    setItem((prev) => ({
+      ...prev,
+      category: option,
+    }))
+  }
 
   const handleSave = async (event) => {
     event.preventDefault()
-    if (!imgFile||!title || !createdBy || !body || !director) {
+    if (!imgFile || !title || !createdBy || !body || !director) {
       alert('빈칸을 채워주세요!')
       return
     }
@@ -52,6 +59,7 @@ const Write = () => {
       createdBy,
       body,
       director,
+      category: item.category,
     }
     setInfos((prev) => {
       return [...prev, newInfo]
@@ -61,10 +69,8 @@ const Write = () => {
     await setDoc(docRef, newInfo)
     const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
     await uploadBytes(imageRef, imgRef.current.files[0])
-
-    // 파일 URL 가져오기
     const downloadURL = await getDownloadURL(imageRef)
-    console.log(imageRef)
+    // console.log(downloadURL)
     alert('저장되었습니다!')
     setImgFile('')
     setItem({
@@ -73,6 +79,7 @@ const Write = () => {
       body: '',
       director: '',
     })
+    navigate('/admin')
   }
 
   return (
@@ -109,6 +116,9 @@ const Write = () => {
           <St.InputTitle type='text' name='title' placeholder='제목' value={title} onChange={onChange} />
           <div>editor</div>
           <St.InputCreatedBy type='text' placeholder='작성자' name='createdBy' value={createdBy} onChange={onChange} />
+          <div>category</div>
+          {/* 카테고리 선택 드롭다운 */}
+          <Select handleSaveOption={handleSaveOption} />
           <div>body</div>
           <St.BodyTextarea
             name='body'
