@@ -9,17 +9,19 @@ import { getStorys } from '../axios/api'
 import { useQuery } from 'react-query'
 
 const MainPage = () => {
+  const navigate = useNavigate()
   // firebase관련데이터들어오는지확인
   // useEffect(() => {
   //   console.log('firebaseApp', firebaseApp)
   // }, [])
 
   // firebase에있는 데이터 읽어오는지
-  const { data } = useQuery('storys', getStorys)
-
+  const { isLoading, data } = useQuery('storys', getStorys)
   console.log(data)
 
-  const navigate = useNavigate()
+  if (isLoading) {
+    return <div>로딩중입니다..</div>
+  }
 
   return (
     <div>
@@ -43,41 +45,56 @@ const MainPage = () => {
         <h2>category1</h2>
         <div>
           <StCategory1Div>
-            <StCategoryInput>
+            {data.map((story) => {
+              return (
+                <StCategoryInputDiv
+                  key={story.title}
+                  onClick={() => {
+                    navigate('/details/:id')
+                  }}
+                >
+                  <StImg></StImg>
+                  <div> 제목 : {story.title}</div>
+                  <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                </StCategoryInputDiv>
+              )
+            })}
+            {/* <input type='file' accept='image/*'></input>
+              <div>title</div>
+              <div>contents</div>
+            </StCategoryInputDiv>
+            <StCategoryInputDiv>
               <input type='file' accept='image/*'></input>
               <div>title</div>
               <div>contents</div>
-            </StCategoryInput>
-            <StCategoryInput>
+            </StCategoryInputDiv>
+            <StCategoryInputDiv>
               <input type='file' accept='image/*'></input>
               <div>title</div>
-              <div>contents</div>
-            </StCategoryInput>
-            <StCategoryInput>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInput>
+              <div>contents</div> */}
           </StCategory1Div>
         </div>
+
         <h2>category2</h2>
-        <StCategory1Div>
-          <StCategoryInput>
-            <input type='file' accept='image/*'></input>
-            <div>title</div>
-            <div>contents</div>
-          </StCategoryInput>
-          <StCategoryInput>
-            <input type='file' accept='image/*'></input>
-            <div>title</div>
-            <div>contents</div>
-          </StCategoryInput>
-          <StCategoryInput>
-            <input type='file' accept='image/*'></input>
-            <div>title</div>
-            <div>contents</div>
-          </StCategoryInput>
-        </StCategory1Div>
+        <div>
+          <StCategory1Div>
+            <StCategoryInputDiv>
+              <input type='file' accept='image/*'></input>
+              <div>title</div>
+              <div>contents</div>
+            </StCategoryInputDiv>
+            <StCategoryInputDiv>
+              <input type='file' accept='image/*'></input>
+              <div>title</div>
+              <div>contents</div>
+            </StCategoryInputDiv>
+            <StCategoryInputDiv>
+              <input type='file' accept='image/*'></input>
+              <div>title</div>
+              <div>contents</div>
+            </StCategoryInputDiv>
+          </StCategory1Div>
+        </div>
       </StContainerDiv>
     </div>
   )
@@ -118,16 +135,30 @@ const StFaSearchDiv = styled.div`
   cursor: pointer;
 `
 
-const StCategoryInput = styled.div`
+const StCategoryInputDiv = styled.div`
   height: 150px;
   width: 200px;
 
   margin: 20px;
 
   border: 1px solid black;
+
+  cursor: pointer;
 `
 
 const StCategory1Div = styled.div`
   display: flex;
   align-items: center;
+`
+
+const StImg = styled.img`
+  width: 200px;
+  height: 100px;
+
+  /* border: 1px solid black; */
+`
+const StContentsDiv = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
