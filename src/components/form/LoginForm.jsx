@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../../firebase";
 
 function LoginForm({ closeModal }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
   
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
   
     const onChange = event => {
       const {
@@ -20,26 +27,26 @@ function LoginForm({ closeModal }) {
       }
     };
   
-    // const signSubmit = async e => {
-    //   e.preventDefault();
-    //   if (!email || !password) {
-    //     return alert('전부 다 입력되지 않았습니다.');
-    //   } else {
-    //     try {
-    //       requestLogin(email, password);
-    //       alert('로그인 되었습니다!');
-    //       navigate('/123');
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //     setEmail('');
-    //     setPassword('');
-    //   }
-    // };
-    // onSubmit={signSubmit}
+    const signIn = async e => {
+      e.preventDefault();
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          setCurrentUser(userCredential.user.email);
+          navigate('/AdminPage');
+        } catch (error) {
+          console.log(error);
+        }
+        setEmail('');
+        setPassword('');
+    };
 
     return (
-      <form>
+      <form  onSubmit={signIn}>
+
         <StModalBox
           onClick={event => {
             if (event.target === event.currentTarget) {
