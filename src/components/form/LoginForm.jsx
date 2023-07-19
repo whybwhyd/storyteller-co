@@ -12,6 +12,7 @@ function LoginForm({ closeModal }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
+    const [loginMessage,setloginMessage] =  useState('');
   
     const navigate = useNavigate();
   
@@ -26,7 +27,7 @@ function LoginForm({ closeModal }) {
         setPassword(value);
       }
     };
-  
+
     const signIn = async e => {
       e.preventDefault();
         try {
@@ -36,16 +37,40 @@ function LoginForm({ closeModal }) {
             password
           );
           setCurrentUser(userCredential.user.email);
-          navigate('/AdminPage');
+          console.log("Auth",auth);
+          navigate('/admin');
         } catch (error) {
-          console.log(error);
+          if(error){
+            return setloginMessage(`관리자 아이디가 아닙니다.`);
+          }
         }
         setEmail('');
         setPassword('');
     };
 
     return (
-      <form  onSubmit={signIn}>
+    <>
+       {currentUser ? (
+        <form>
+        <StModalBox
+          onClick={event => {
+            if (event.target === event.currentTarget) {
+              closeModal();
+            }
+          }}
+        >
+          <StModalContents>
+            <StSignBtn onClick={async () => {
+          alert("로그아웃을 하시겠습니까?");
+          await signOut(auth);
+          setCurrentUser(null);
+        }} >로그아웃</StSignBtn>
+          </StModalContents>
+        </StModalBox>
+      </form>
+) :
+       (
+       <form  onSubmit={signIn}>
 
         <StModalBox
           onClick={event => {
@@ -74,11 +99,13 @@ function LoginForm({ closeModal }) {
               value={password}
               onChange={onChange}
             />
-  
+            <Stloginmessage>{loginMessage}</Stloginmessage>
             <StSignBtn type="submit">로그인</StSignBtn>
           </StModalContents>
         </StModalBox>
       </form>
+      )}
+    </>
     );
   }
   
@@ -114,6 +141,18 @@ function LoginForm({ closeModal }) {
     background-color: #ffffff;
     margin-bottom: 10px;
   `;
+
+  const StLogoutBtn = styled.button`
+    width: 80%;
+    height: 63px;
+    border: solid 0px;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #000000;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+  `
 
 const StBox = styled.div`
 display: flex;
@@ -167,3 +206,8 @@ const StModalContents = styled.div`
     font-weight: bolder;
   }
 `;
+
+  const Stloginmessage = styled.span`
+    font-family: 'inter', sans-serif;
+    color: #AF1F2B;
+  `;
