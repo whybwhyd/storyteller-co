@@ -46,7 +46,7 @@ export const DramaImg = styled.img`
   /* transform: translate(0px, 0px); */
   margin: 50px;
 `
-export const IntroductonContext = styled.div`
+export const Body = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
@@ -58,7 +58,7 @@ export const IntroductonContext = styled.div`
   align-content: space-evenly;
   text-align: center;
 `
-export const AuthorContext = styled.div`
+export const Director = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
@@ -118,7 +118,7 @@ export const InputCreatedBy = styled.input`
     font-size: 15px;
   }
 `
-export const Introduction = styled.textarea`
+export const BodyTextarea = styled.textarea`
   transform: translate(80px, 0px);
   width: 600px;
   height: 150px;
@@ -127,7 +127,7 @@ export const Introduction = styled.textarea`
     font-size: 15px;
   }
 `
-export const Textarea = styled.textarea`
+export const DirectorTextarea = styled.textarea`
   transform: translate(80px, 0px);
   width: 600px;
   height: 280px;
