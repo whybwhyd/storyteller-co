@@ -37,9 +37,18 @@ export const YoutubeContext = styled.div`
   align-content: space-evenly;
   text-align: center;
 `
-export const ButtonContainer = styled.div`
+
+// 버튼 스타일 컴포넌트에 따로 넣기!!!!
+export const DetailButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 200px; /* 나중에 삭제할 것 */
+`
+export const WriteButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 200px; /* 나중에 삭제할 것 */
 `
@@ -53,7 +62,29 @@ export const LikeButton = styled.button`
   font-size: 20px;
   font-weight: bolder;
 `
-export const EditButton = styled.button`
+// export const EditButton = styled.button`
+//   background-color: #2d8675;
+//   color: #e9e6d8;
+//   width: 120px;
+//   height: 40px;
+//   border: none;
+//   border-radius: 8px;
+//   font-size: 20px;
+//   font-weight: bolder;
+// `
+export const CancelButton = styled.button`
+  transform: translate(-10px, 0px);
+  background-color: #2d8675;
+  color: #e9e6d8;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bolder;
+`
+export const SaveButton = styled.button`
+  transform: translate(10px, 0px);
   background-color: #2d8675;
   color: #e9e6d8;
   width: 120px;
