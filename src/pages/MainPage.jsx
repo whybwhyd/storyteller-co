@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getStorys } from '../axios/api'
 import { useQuery } from 'react-query'
 
 const MainPage = () => {
   const navigate = useNavigate()
+  const { title } = useParams()
+  console.log('title=>', title)
 
-  const { isLoading, data } = useQuery('infos', getStorys)
-  console.log(data)
+  const { isLoading, isError, data } = useQuery('infos', getStorys)
 
   if (isLoading) {
     return <div>로딩중입니다..</div>
@@ -47,7 +48,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate('/details/:title')
+                      navigate(`/details/:${story.title}`)
                     }}
                   >
                     <StImg></StImg>
@@ -71,13 +72,59 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate('/details/:id')
+                      navigate(`/details/:${story.title}`)
                     }}
                   >
                     <div>
                       <StImg></StImg>
                     </div>
 
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
+          </StCategory1Div>
+        </div>
+
+        <h2>category3</h2>
+        <div>
+          <StCategory1Div>
+            {data
+              .filter((item) => item.category === 'category3')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate(`/details/:${story.title}`)
+                    }}
+                  >
+                    <StImg></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
+          </StCategory1Div>
+        </div>
+
+        <h2>category4</h2>
+        <div>
+          <StCategory1Div>
+            {data
+              .filter((item) => item.category === 'category4')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate(`/details/:${story.title}`)
+                    }}
+                  >
+                    <StImg></StImg>
                     <div> 제목 : {story.title}</div>
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
