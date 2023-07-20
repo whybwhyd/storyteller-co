@@ -47,7 +47,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate('/details/:id')
+                      navigate('/details/:title')
                     }}
                   >
                     <StImg></StImg>
@@ -74,7 +74,10 @@ const MainPage = () => {
                       navigate('/details/:id')
                     }}
                   >
-                    <StImg></StImg>
+                    <div>
+                      <StImg></StImg>
+                    </div>
+
                     <div> 제목 : {story.title}</div>
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
