@@ -32,28 +32,27 @@ const DetailsPage = () => {
   if (!infos) {
     return <div>Loading...</div>
   }
-
+  const filteredInfo = infos.find((info) => ":"+ info.id === title)
   return (
     <div id='1'>
       <St.Grid>
-        {infos.map((info) => {
-          return (
-            <div>
-              <St.DramaImg src={Drama1} alt='알고있지만 드라마 사진' />
-              <h4> {info.createdBy}</h4>
-              <St.Context>
-                <h2>{info.title}</h2>
-                <div>{info.body}</div>
-              </St.Context>
-              <St.Context>
-                <h2>제작정보</h2>
-                <div>{info.director}</div>
-              </St.Context>
-              <St.YoutubeContext>youtube-privew</St.YoutubeContext>
-              <DetailButton handleLike={handleLike} liked={liked} />
-            </div>
-          )
-        })}
+        {/* 특정 id에 해당하는 정보만 렌더링 */}
+        {filteredInfo && (
+          <div>
+            <St.DramaImg src={Drama1} alt='알고있지만 드라마 사진' />
+            <h4> {filteredInfo.createdBy}</h4>
+            <St.Context>
+              <h2>{filteredInfo.title}</h2>
+              <div>{filteredInfo.body}</div>
+            </St.Context>
+            <St.Context>
+              <h2>제작정보</h2>
+              <div>{filteredInfo.director}</div>
+            </St.Context>
+            <St.YoutubeContext>youtube-privew</St.YoutubeContext>
+            <DetailButton handleLike={handleLike} liked={liked} />
+          </div>
+        )}
       </St.Grid>
       <UpButton />
     </div>
