@@ -54,23 +54,27 @@ const Write = () => {
       alert('빈칸을 채워주세요!')
       return
     }
+  
+    const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
+    await uploadBytes(imageRef, imgRef.current.files[0])
+    const downloadURL = await getDownloadURL(imageRef)
+  
     const newInfo = {
+      id: title,
       title,
       createdBy,
       body,
+      img: downloadURL,
       director,
       category: item.category,
     }
     setInfos((prev) => {
       return [...prev, newInfo]
     })
-
+  
     const docRef = doc(db, 'infos', title)
     await setDoc(docRef, newInfo)
-    const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
-    await uploadBytes(imageRef, imgRef.current.files[0])
-    const downloadURL = await getDownloadURL(imageRef)
-    // console.log(downloadURL)
+  
     alert('저장되었습니다!')
     setImgFile('')
     setItem({
@@ -81,7 +85,6 @@ const Write = () => {
     })
     navigate('/admin')
   }
-
   return (
     <div id='1'>
       <St.Grid>
