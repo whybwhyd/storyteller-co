@@ -3,13 +3,13 @@ import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
-import { getStorys } from '../axios/api'
+import { getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
 
 const MainPage = () => {
   const navigate = useNavigate()
 
-  const { isLoading, data } = useQuery('infos', getStorys)
+  const { isLoading, data } = useQuery('infos', getPosts)
   console.log(data)
 
   if (isLoading) {
