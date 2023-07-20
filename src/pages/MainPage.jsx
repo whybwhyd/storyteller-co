@@ -9,7 +9,7 @@ import { useQuery } from 'react-query'
 const MainPage = () => {
   const navigate = useNavigate()
 
-  const { isLoading, data } = useQuery('storys', getStorys)
+  const { isLoading, data } = useQuery('infos', getStorys)
   console.log(data)
 
   if (isLoading) {
