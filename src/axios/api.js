@@ -15,9 +15,7 @@ const getStorys = async () => {
             ...doc.data(),
         }
         initialStorys.push(data)
-        // console.log("querySnapshot =>", querySnapshot)
-        // console.log("doc.data=>", doc.data())
-        // console.log("doc.id =>", doc.id)
+
     })
     return initialStorys
 }

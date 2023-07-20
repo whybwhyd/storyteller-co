@@ -3,19 +3,12 @@ import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
-import firebaseApp, { db } from '../firebase'
-import { collection, getDocs } from 'firebase/firestore'
 import { getStorys } from '../axios/api'
 import { useQuery } from 'react-query'
 
 const MainPage = () => {
   const navigate = useNavigate()
-  // firebase관련데이터들어오는지확인
-  // useEffect(() => {
-  //   console.log('firebaseApp', firebaseApp)
-  // }, [])
 
-  // firebase에있는 데이터 읽어오는지
   const { isLoading, data } = useQuery('storys', getStorys)
   console.log(data)
 
@@ -42,57 +35,51 @@ const MainPage = () => {
             />
           </StFaSearchDiv>
         </StSearchImgDiv>
+
         <h2>category1</h2>
         <div>
           <StCategory1Div>
-            {data.map((story) => {
-              return (
-                <StCategoryInputDiv
-                  key={story.title}
-                  onClick={() => {
-                    navigate('/details/:id')
-                  }}
-                >
-                  <StImg></StImg>
-                  <div> 제목 : {story.title}</div>
-                  <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
-                </StCategoryInputDiv>
-              )
-            })}
-            {/* <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInputDiv>
-            <StCategoryInputDiv>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInputDiv>
-            <StCategoryInputDiv>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div> */}
+            {data
+              .filter((item) => item.category === 'category1')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate('/details/:id')
+                    }}
+                  >
+                    <StImg></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
           </StCategory1Div>
         </div>
 
         <h2>category2</h2>
+
         <div>
           <StCategory1Div>
-            <StCategoryInputDiv>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInputDiv>
-            <StCategoryInputDiv>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInputDiv>
-            <StCategoryInputDiv>
-              <input type='file' accept='image/*'></input>
-              <div>title</div>
-              <div>contents</div>
-            </StCategoryInputDiv>
+            {data
+              .filter((item) => item.category === 'category2')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate('/details/:id')
+                    }}
+                  >
+                    <StImg></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
           </StCategory1Div>
         </div>
       </StContainerDiv>
@@ -154,8 +141,6 @@ const StCategory1Div = styled.div`
 const StImg = styled.img`
   width: 200px;
   height: 100px;
-
-  /* border: 1px solid black; */
 `
 const StContentsDiv = styled.div`
   overflow: hidden;
