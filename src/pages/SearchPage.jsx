@@ -7,7 +7,7 @@ import * as St from '../style/StSearchStyled'
 
 const SearchPage = () => {
   // useQuery로 데이터 전체 불러오기
-  const { data } = useQuery('posts', getPosts)
+  const { data } = useQuery('infos', getPosts)
 
   // state to keep track of the selected category
   const [selectedCategory, setSelectedCategory] = useState(null)

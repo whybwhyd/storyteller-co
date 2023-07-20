@@ -8,7 +8,7 @@ function Cards() {
   const navigate = useNavigate()
 
   // useQuery로 데이터 전체 불러오기
-  const { isLoading, isError, data } = useQuery('posts', getPosts)
+  const { isLoading, isError, data } = useQuery('infos', getPosts)
   // console.log('See if data is coming to Cards', data)
 
   if (isLoading) {
