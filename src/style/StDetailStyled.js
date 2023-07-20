@@ -12,6 +12,20 @@ export const Grid = styled.div`
 export const DramaImg = styled.img`
   /* transform: translate(0px, 0px); */
   margin: 50px;
+  width: 680px;
+  height: 381px;
+`
+export const DramaImgBox = styled.div`
+  border: 2px solid black;
+  border-radius: 30px;
+  width: 780px;
+  height: 500px;
+  border: none;
+  background-color: #d9d9d9;
+  display: grid;
+  align-content: space-evenly;
+  text-align: center;
+  margin: 50px auto 50px auto;
 `
 export const Context = styled.div`
   background-color: #e9e6d8;
@@ -62,16 +76,16 @@ export const LikeButton = styled.button`
   font-size: 20px;
   font-weight: bolder;
 `
-// export const EditButton = styled.button`
-//   background-color: #2d8675;
-//   color: #e9e6d8;
-//   width: 120px;
-//   height: 40px;
-//   border: none;
-//   border-radius: 8px;
-//   font-size: 20px;
-//   font-weight: bolder;
-// `
+export const EditButton = styled.button`
+  background-color: #2d8675;
+  color: #e9e6d8;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bolder;
+`
 export const CancelButton = styled.button`
   transform: translate(-10px, 0px);
   background-color: #2d8675;

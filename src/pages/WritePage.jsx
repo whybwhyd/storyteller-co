@@ -8,7 +8,7 @@ import { storage, db } from '../firebase'
 import { WriteButton, UpButton } from '../components/Button'
 import { useNavigate } from 'react-router-dom'
 
-const Write = () => {
+const WritePage = () => {
   const [imgFile, setImgFile] = useState(null)
   const [infos, setInfos] = useState([])
   const [item, setItem] = useState({
@@ -54,11 +54,11 @@ const Write = () => {
       alert('빈칸을 채워주세요!')
       return
     }
-  
+
     const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
     await uploadBytes(imageRef, imgRef.current.files[0])
     const downloadURL = await getDownloadURL(imageRef)
-  
+
     const newInfo = {
       id: title,
       title,
@@ -71,10 +71,10 @@ const Write = () => {
     setInfos((prev) => {
       return [...prev, newInfo]
     })
-  
+
     const docRef = doc(db, 'infos', title)
     await setDoc(docRef, newInfo)
-  
+
     alert('저장되었습니다!')
     setImgFile('')
     setItem({
@@ -153,4 +153,4 @@ const Write = () => {
   )
 }
 
-export default Write
+export default WritePage

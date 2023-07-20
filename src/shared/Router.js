@@ -1,11 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainPage from '../pages/MainPage'
-import DetailsPage from '../pages/DetailsPage'
+import DetailPage from '../pages/DetailPage'
 import AdminPage from '../pages/AdminPage'
 import SearchPage from '../pages/SearchPage'
 import AboutPage from '../pages/AboutPage'
-import Write from '../pages/Write'
+import WritePage from '../pages/WritePage'
+import EditPage from '../pages/EditPage'
 import Layout from './Layout'
 
 const Router = () => {
@@ -15,10 +16,11 @@ const Router = () => {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/details/:title' element={<DetailsPage />} />
+          <Route path='/detail/:title' element={<DetailPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/admin' element={<AdminPage />} />
-          <Route path='/write' element={<Write />} />
+          <Route path='/write' element={<WritePage />} />
+          <Route path='/edit/:id' element={<EditPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>
