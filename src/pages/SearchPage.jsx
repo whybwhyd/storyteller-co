@@ -20,9 +20,10 @@ const SearchPage = () => {
   const [noResults, setNoResults] = useState(null)
 
   // function to handle category button clicks
-  const openCategoryHandler = (category) => {
+  const openCategoryHandler = async (category) => {
     // Results In ..."~" state 변경
     setSelectedCategory(category)
+
     // Clear the search results when a category is selected
     setSearchResults(null) // Clear search results
 
@@ -30,21 +31,21 @@ const SearchPage = () => {
     setNoResults(false)
 
     // Filter the data based on the selected category
-    const filteredCategoryResults = data.filter((post) => post.category === category)
+    const filteredCategoryResults = await data.filter((post) => post.category === category)
     setCategoryResults(filteredCategoryResults)
 
-    console.log(selectedCategory)
-    console.log(categoryResults) // 필터링 된 정보는 잘받아옹는데!
+    console.log(selectedCategory) // 셀렉한 카테고리값 확인
+    console.log(categoryResults) // 필터링 된 정보
     // console.log(categoryResults)
   }
 
   // function to handle search button clicks
   // *** 조건문으로 noReults까지 구현해보기
-  const openSearchResultsHandler = (title) => {
+  const openSearchResultsHandler = async (title) => {
     setSelectedCategory(null) // 기존 선택한 카테고리 정보 초기화
 
     // 검색한 값을 포함하는 데이터만 필터링하여 결과로 저장
-    const filteredSearchResults = data.filter((post) => post.title.includes(title))
+    const filteredSearchResults = await data.filter((post) => post.title.includes(title))
 
     // ***확인필요***
     if (filteredSearchResults.length > 0) {
@@ -76,6 +77,7 @@ const SearchPage = () => {
           <Cards data={categoryResults} />
         </div>
       )}
+
       {searchResults && (
         <div>
           <h2>Results For ...</h2>
@@ -87,6 +89,7 @@ const SearchPage = () => {
         <h2>Now Trending</h2>
         <Cards data={data} />
       </div>
+
       {noResults && (
         <div>
           <h2>No Results...</h2>

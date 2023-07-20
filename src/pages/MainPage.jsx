@@ -42,17 +42,17 @@ const MainPage = () => {
             {data
               .filter((item) => item.category === 'category1')
 
-              .map((story) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={story.title}
+                    key={info.title}
                     onClick={() => {
                       navigate('/details/:id')
                     }}
                   >
                     <StImg></StImg>
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -66,17 +66,17 @@ const MainPage = () => {
             {data
               .filter((item) => item.category === 'category2')
 
-              .map((story) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={story.title}
+                    key={info.title}
                     onClick={() => {
                       navigate('/details/:id')
                     }}
                   >
                     <StImg></StImg>
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
