@@ -2,7 +2,7 @@ import React from 'react'
 import Router from './shared/Router'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-// Setting React Query
+
 const queryClient = new QueryClient()
 
 function App() {
