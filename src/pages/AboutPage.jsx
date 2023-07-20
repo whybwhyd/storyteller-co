@@ -15,7 +15,6 @@ const AboutPage = () => {
   };
 
   return (<>
-  <StHeader> 배너 </StHeader>
   <StContainer>
   <StAboutContent>AboutPage</StAboutContent>
   <StLoginBtn onClick={openModal}>Admin</StLoginBtn >
@@ -27,13 +26,6 @@ const AboutPage = () => {
 
 export default AboutPage
 
-const StHeader = styled.div`
-  background-color: #2D8675;
-  width: 100%;
-  height: 57px;
-  font-size: 24px;
-  font-weight: 500;
-`
 const StAboutContent = styled.div`
 
 `
