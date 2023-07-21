@@ -11,7 +11,7 @@ const MainPage = () => {
   const { title } = useParams()
   console.log('title=>', title)
 
-  const { isLoading, isError, data } = useQuery('infos', getStorys)
+  const { isLoading, data } = useQuery('infos', getStorys)
 
   if (isLoading) {
     return <div>로딩중입니다..</div>
@@ -51,7 +51,7 @@ const MainPage = () => {
                       navigate(`/details/:${story.title}`)
                     }}
                   >
-                    <StImg></StImg>
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
                     <div> 제목 : {story.title}</div>
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
@@ -76,7 +76,7 @@ const MainPage = () => {
                     }}
                   >
                     <div>
-                      <StImg></StImg>
+                      <StImg src={story.img} alt='드라마 이미지'></StImg>
                     </div>
 
                     <div> 제목 : {story.title}</div>
@@ -101,7 +101,7 @@ const MainPage = () => {
                       navigate(`/details/:${story.title}`)
                     }}
                   >
-                    <StImg></StImg>
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
                     <div> 제목 : {story.title}</div>
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
@@ -124,7 +124,7 @@ const MainPage = () => {
                       navigate(`/details/:${story.title}`)
                     }}
                   >
-                    <StImg></StImg>
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
                     <div> 제목 : {story.title}</div>
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
@@ -178,7 +178,10 @@ const StCategoryInputDiv = styled.div`
 
   margin: 20px;
 
-  border: 1px solid black;
+  object-fit: cover;
+
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
 `

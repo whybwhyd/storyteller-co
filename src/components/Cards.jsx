@@ -33,7 +33,6 @@ function Cards() {
             <div>{item.title}</div>
             <div>{item.body}</div>
             <div>{item.director}</div>
-            <div>{item.like.toString()}</div>
           </StCards>
         ))}
       </StCardsList>
