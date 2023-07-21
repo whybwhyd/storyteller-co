@@ -6,7 +6,7 @@ function Cards({ data }) {
   const navigate = useNavigate()
 
   const navigateToDetailHandler = (id) => {
-    navigate(`/details/:${id}`)
+    navigate(`/detail/:${id}`)
   }
 
   return (

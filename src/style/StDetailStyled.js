@@ -38,6 +38,7 @@ export const Context = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color:black;
 `
 export const YoutubeContext = styled.div`
   border: 2px solid black;
@@ -50,6 +51,7 @@ export const YoutubeContext = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color:black;
 `
 
 // 버튼 스타일 컴포넌트에 따로 넣기!!!!

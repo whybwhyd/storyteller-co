@@ -1,34 +1,38 @@
 import React, { useState, useRef } from 'react'
 import * as St from '../style/StWriteStyled'
 import DefaultImg from '../assets/DefaultImg.png'
+import YtDefaultImg from '../assets/YtDefaultImg.jpg'
 import Select from '../components/Select'
 import { doc, setDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage, db } from '../firebase'
 import { WriteButton, UpButton } from '../components/Button'
 import { useNavigate } from 'react-router-dom'
+import Youtube from 'react-youtube'
 
 const WritePage = () => {
-  const [imgFile, setImgFile] = useState(null)
-  const [infos, setInfos] = useState([])
+  // const [infos, setInfos] = useState([])
   const [item, setItem] = useState({
     title: '',
     createdBy: '',
     body: '',
     director: '',
-    youtube:'',
+    youtubeUrl: '',
   })
+  const { title, createdBy, body, director, youtubeUrl, category } = item
+
+  const [imgFile, setImgFile] = useState(null)
+  const [showYoutubePreview, setShowYoutubePreview] = useState(false)
   const imgRef = useRef()
+  const navigate = useNavigate()
+
   const onChange = (event) => {
     const { value, name } = event.target
-    setItem({
-      ...item,
+    setItem((prev) => ({
+      ...prev,
       [name]: value,
-    })
+    }))
   }
-  const { title, createdBy, body, director,youtube } = item
-
-  const navigate = useNavigate()
 
   // 이미지 업로드 input의 onChange
   const saveImgFile = async () => {
@@ -42,6 +46,7 @@ const WritePage = () => {
   const deleteImg = () => {
     setImgFile('')
   }
+  // 카테고리 onchange
   const handleSaveOption = (option) => {
     setItem((prev) => ({
       ...prev,
@@ -51,7 +56,8 @@ const WritePage = () => {
 
   const handleSave = async (event) => {
     event.preventDefault()
-    if (!imgFile || !title || !createdBy || !body || !director) {
+    // const { title, createdBy, body, director, youtubeUrl, category } = item;
+    if (!imgFile || !title || !createdBy || !body || !director || !youtubeUrl || !category) {
       alert('빈칸을 채워주세요!')
       return
     }
@@ -67,11 +73,11 @@ const WritePage = () => {
       body,
       img: downloadURL,
       director,
-      category: item.category,
+      category,
     }
-    setInfos((prev) => {
-      return [...prev, newInfo]
-    })
+    // setInfos((prev) => {
+    //   return [...prev, newInfo]
+    // })
 
     const docRef = doc(db, 'infos', title)
     await setDoc(docRef, newInfo)
@@ -83,12 +89,32 @@ const WritePage = () => {
       createdBy: '',
       body: '',
       director: '',
+      youtubeUrl: '',
     })
     navigate('/admin')
   }
 
-  const regex = /v=([a-zA-Z0-9_-]{11})/;
-  const match = youtube.match(regex);
+  const handleYoutubeUpload = () => {
+    try {
+      const url = new URL(youtubeUrl)
+      const searchParams = new URLSearchParams(url.search)
+      setItem((prev) => ({
+        ...prev,
+        youtubeUrl: searchParams.get('v') || '',
+      }))
+      setShowYoutubePreview(true)
+    } catch (error) {
+      alert('유효한 유튜브 URL을 입력해주세요!')
+    }
+  }
+
+  const handleYoutubeDelete = () => {
+    setItem((prev) => ({
+      ...prev,
+      youtubeUrl: '',
+    }))
+    setShowYoutubePreview(false)
+  }
 
   return (
     <div id='1'>
@@ -99,7 +125,7 @@ const WritePage = () => {
             <br />
             <St.UdLabels>
               <St.UploadLabel>
-                <label htmlFor='inputprofileImg'>사진 업로드</label>
+                <label htmlFor='inputprofileImg'>사진 첨부</label>
                 <form>
                   <St.InputprofileImg
                     id='inputprofileImg'
@@ -152,15 +178,24 @@ const WritePage = () => {
         <St.YoutubeContext>
           <div>
             <div>youtube-privew</div>
-            <input
-            name='youtube'
-            placeholder='미리보기 유튜브 링크를 넣어주세요'
-            value={youtube}
-            onChange={onChange}
+            <St.InputYoutubeUrl
+              name='youtubeUrl'
+              placeholder='미리보기 유튜브 링크를 넣어주세요'
+              value={youtubeUrl}
+              onChange={onChange}
             />
-            <button>저장하기</button>
+            {showYoutubePreview ? 
+           ( <>
+            <St.YtBtn onClick={handleYoutubeDelete}>삭제</St.YtBtn>
+            <Youtube videoId={youtubeUrl} /> 
+            </>)
+            : 
+            (<>
+            <St.YtBtn onClick={handleYoutubeUpload}>등록</St.YtBtn>
+            <St.Ytimg src={YtDefaultImg} alt='유튜브 이미지' />
+            </>)}
           </div>
-          </St.YoutubeContext>
+        </St.YoutubeContext>
         <WriteButton handleSave={handleSave} />
       </St.Grid>
       <UpButton />
