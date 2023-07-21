@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as St from '../style/StDetailStyled'
 import { useParams } from 'react-router-dom'
-import DefaultImg from '../assets/DefaultImg.png'
 import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import { DetailButton, UpButton } from '../components/Button'
