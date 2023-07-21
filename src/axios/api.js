@@ -3,7 +3,8 @@ import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 
 const getStorys = async () => {
-  const q = query(collection(db, 'storys'))
+  // 변경사항 storys infos
+  const q = query(collection(db, 'infos'))
   const querySnapshot = await getDocs(q)
 
   const initialStorys = []
@@ -20,7 +21,7 @@ const getStorys = async () => {
 
 const getPosts = async () => {
   try {
-    const postsCollection = collection(db, 'posts') // 'collection' 함수는 'collection(db, '컬렉션_이름') 형태로 사용
+    const postsCollection = collection(db, 'infos') // 'collection' 함수는 'collection(db, '컬렉션_이름') 형태로 사용
     const postsSnapshot = await getDocs(postsCollection)
     const posts = postsSnapshot.docs.map((doc) => doc.data())
     return posts
@@ -30,4 +31,4 @@ const getPosts = async () => {
   }
 }
 
-export { getStorys, getPosts }
+export { getPosts, getStorys }

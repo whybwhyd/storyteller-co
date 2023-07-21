@@ -5,6 +5,7 @@ import DefaultImg from '../assets/DefaultImg.png'
 import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import { DetailButton, UpButton } from '../components/Button'
+import DefaultImg from '../assets/DefaultImg.png'
 
 const DetailPage = () => {
   const [liked, setLiked] = useState(false)

@@ -3,15 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import {
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
 function LoginForm({ closeModal }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(auth.currentUser);
     const [loginMessage,setloginMessage] =  useState('');
   
     const navigate = useNavigate();
@@ -60,10 +58,12 @@ function LoginForm({ closeModal }) {
           }}
         >
           <StModalContents>
+          <StSignBtn onClick={async () => {
+            navigate('/admin');
+        }} >관리자 페이지</StSignBtn>
             <StSignBtn onClick={async () => {
           alert("로그아웃을 하시겠습니까?");
-          await signOut(auth);
-          setCurrentUser(null);
+          await auth.signOut();
         }} >로그아웃</StSignBtn>
           </StModalContents>
         </StModalBox>
@@ -141,18 +141,6 @@ function LoginForm({ closeModal }) {
     background-color: #ffffff;
     margin-bottom: 10px;
   `;
-
-  const StLogoutBtn = styled.button`
-    width: 80%;
-    height: 63px;
-    border: solid 0px;
-    border-radius: 20px;
-    font-size: 20px;
-    text-align: center;
-    color: #000000;
-    background-color: #ffffff;
-    margin-bottom: 10px;
-  `
 
 const StBox = styled.div`
 display: flex;
