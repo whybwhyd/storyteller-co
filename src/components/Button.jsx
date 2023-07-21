@@ -44,9 +44,6 @@ export const WriteButton = (props) => {
   const handleCancel = () => {
     navigate('/admin')
   }
-  const handleMoveEdit = () => {
-    navigate('/edit')
-  }
 
   return (
     <div>
@@ -58,10 +55,10 @@ export const WriteButton = (props) => {
   )
 }
 export const EditButton = (props) => {
-  const { handleEdit } = props
+  const { handleEdit,id } = props
   const navigate = useNavigate()
   const handleCancel = () => {
-    navigate('/admin')
+    navigate(`/detail/:${id}`)
   }
 
   return (

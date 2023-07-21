@@ -35,7 +35,7 @@ const EditPage = () => {
     createdBy,
     body,
     director,
-    category
+    category,
   })
   const imgRef = useRef()
   const onChange = (event) => {
@@ -67,15 +67,15 @@ const EditPage = () => {
   const handleSaveOption = (option) => {
     setItem((prev) => {
       if (prev.category === option) {
-        return prev; 
+        return prev
       } else {
         return {
           ...prev,
-          category: option, 
-        };
+          category: option,
+        }
       }
-    });
-  };
+    })
+  }
 
   const handleEdit = async (event) => {
     event.preventDefault()
@@ -89,16 +89,17 @@ const EditPage = () => {
       await uploadBytes(imageRef, imgRef.current.files[0])
       downloadURL = await getDownloadURL(imageRef)
     }
-    
+
     const newInfo = {
-      id: title,
-      title,
-      createdBy,
-      body,
+      id: item.title,
+      title: item.title,
+      createdBy: item.createdBy,
+      body: item.body,
       img: downloadURL,
-      director,
+      director: item.director,
       category: item.category,
     }
+
     setInfos((prev) => {
       return [...prev, newInfo]
     })
@@ -108,8 +109,7 @@ const EditPage = () => {
     await updateDoc(infoRef, newInfo)
 
     alert('저장되었습니다!')
-
-    navigate('/admin')
+    navigate(`/detail/:${id}`)
   }
 
   return (
@@ -144,7 +144,7 @@ const EditPage = () => {
           </St.ImgUpload>
           <St.Body>
             <div>Title</div>
-            <St.InputTitle type='text' name='title' placeholder='제목' value={item.title} onChange={onChange} />
+            <St.InputTitle type='text' name='title' placeholder='제목' value={title} onChange={onChange} />
             <div>editor</div>
             <St.InputCreatedBy
               type='text'
@@ -180,7 +180,7 @@ const EditPage = () => {
           </St.Director>
           <St.YoutubeContext>youtube-privew</St.YoutubeContext>
           {/* api 불러온 후 수정 */}
-          <EditButton handleEdit={handleEdit} />
+          <EditButton handleEdit={handleEdit} id={id} />
         </div>
       </St.Grid>
       <UpButton />
