@@ -8,8 +8,8 @@ import { useQuery } from 'react-query'
 import logo1 from '../assets/logo1.png'
 
 const MainPage = () => {
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
   const { isLoading, data } = useQuery('infos', getPosts)
   console.log(data)
 
@@ -42,16 +42,17 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category1')
-
               .map((info) => {
                 return (
                   <StCategoryInputDiv
                     key={info.title}
+
                     onClick={() => {
                       navigate('/details/:id')
                     }}
                   >
                     <StImg></StImg>
+
                     <div> 제목 : {info.title}</div>
                     <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
@@ -66,11 +67,11 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category2')
-
               .map((info) => {
                 return (
                   <StCategoryInputDiv
                     key={info.title}
+
                     onClick={() => {
                       navigate('/details/:id')
                     }}
