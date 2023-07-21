@@ -8,7 +8,7 @@ import { storage, db } from '../firebase'
 import { WriteButton, UpButton } from '../components/Button'
 import { useNavigate } from 'react-router-dom'
 
-const Write = () => {
+const WritePage = () => {
   const [imgFile, setImgFile] = useState(null)
   const [infos, setInfos] = useState([])
   const [item, setItem] = useState({
@@ -16,6 +16,7 @@ const Write = () => {
     createdBy: '',
     body: '',
     director: '',
+    youtube:'',
   })
   const imgRef = useRef()
   const onChange = (event) => {
@@ -25,7 +26,7 @@ const Write = () => {
       [name]: value,
     })
   }
-  const { title, createdBy, body, director } = item
+  const { title, createdBy, body, director,youtube } = item
 
   const navigate = useNavigate()
 
@@ -54,11 +55,11 @@ const Write = () => {
       alert('빈칸을 채워주세요!')
       return
     }
-  
+
     const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
     await uploadBytes(imageRef, imgRef.current.files[0])
     const downloadURL = await getDownloadURL(imageRef)
-  
+
     const newInfo = {
       id: title,
       title,
@@ -71,10 +72,10 @@ const Write = () => {
     setInfos((prev) => {
       return [...prev, newInfo]
     })
-  
+
     const docRef = doc(db, 'infos', title)
     await setDoc(docRef, newInfo)
-  
+
     alert('저장되었습니다!')
     setImgFile('')
     setItem({
@@ -85,6 +86,10 @@ const Write = () => {
     })
     navigate('/admin')
   }
+
+  const regex = /v=([a-zA-Z0-9_-]{11})/;
+  const match = youtube.match(regex);
+
   return (
     <div id='1'>
       <St.Grid>
@@ -144,8 +149,18 @@ const Write = () => {
             onChange={onChange}
           />
         </St.Director>
-        <St.YoutubeContext>youtube-privew</St.YoutubeContext>
-        {/* api 불러온 후 수정 */}
+        <St.YoutubeContext>
+          <div>
+            <div>youtube-privew</div>
+            <input
+            name='youtube'
+            placeholder='미리보기 유튜브 링크를 넣어주세요'
+            value={youtube}
+            onChange={onChange}
+            />
+            <button>저장하기</button>
+          </div>
+          </St.YoutubeContext>
         <WriteButton handleSave={handleSave} />
       </St.Grid>
       <UpButton />
@@ -153,4 +168,4 @@ const Write = () => {
   )
 }
 
-export default Write
+export default WritePage

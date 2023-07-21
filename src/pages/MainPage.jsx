@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
-import { getPosts } from '../axios/api'
+import { getStorys, getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
 import logo1 from '../assets/logo1.png'
 
@@ -48,12 +48,12 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/details/:${story.title}`)
+                      navigate(`/details/:${info.title}`)
                     }}
                   >
-                    <StImg src={story.img} alt='드라마 이미지'></StImg>
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                    <StImg src={info.img} alt='드라마 이미지'></StImg>
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -71,15 +71,15 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/details/:${story.title}`)
+                      navigate(`/details/:${info.title}`)
                     }}
                   >
                     <div>
-                      <StImg src={story.img} alt='드라마 이미지'></StImg>
+                      <StImg src={info.img} alt='드라마 이미지'></StImg>
                     </div>
 
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
