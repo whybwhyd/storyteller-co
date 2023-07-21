@@ -9,12 +9,10 @@ import { DetailButton, UpButton } from '../components/Button'
 const DetailPage = () => {
   const [liked, setLiked] = useState(false)
   const [infos, setInfos] = useState([])
-  const { title } = useParams()
-
+  const { id } = useParams()
   const handleLike = () => {
     setLiked(!liked)
   }
-
   useEffect(() => {
     const fetchData = async () => {
       // infos 정보 가져오기
@@ -26,23 +24,19 @@ const DetailPage = () => {
       })
       setInfos(initialInfos)
     }
-
     fetchData()
   }, [])
-
   if (!infos) {
     return <div>Loading...</div>
   }
-  const filteredInfo = infos.find((info) => ':' + info.id === title)
+  const filteredInfo = infos.find((info) => ':' + info.id === id)
   return (
     <div id='1'>
       <St.Grid>
         {/* 특정 id에 해당하는 정보만 렌더링 */}
         {filteredInfo && (
           <div>
-            <St.DramaImgBox>
-              <St.DramaImg src={filteredInfo.img ? filteredInfo.img : DefaultImg} alt='이미지 업로드' />
-            </St.DramaImgBox>
+            <St.DramaImg src={filteredInfo.img ? filteredInfo.img : DefaultImg} alt='이미지 업로드' />
             <h4> {filteredInfo.createdBy}</h4>
             <St.Context>
               <h2>{filteredInfo.title}</h2>

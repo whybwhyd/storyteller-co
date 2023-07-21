@@ -23,19 +23,19 @@ export const ImgUpload = styled.div`
 `
 export const UploadImgFile = styled.img`
   transform: translate(0px, 10px);
-  width:680px;
-  height:381px;
+  width: 680px;
+  height: 381px;
 `
 export const UdLabels = styled.div`
   display: flex;
   justify-content: center;
 `
 export const UploadLabel = styled.div`
-  transform: translate(-20px, 40px);
+  transform: translate(-20px, 25px);
   font-weight: bolder;
 `
 export const DeleteLabel = styled.div`
-  transform: translate(10px, 40px);
+  transform: translate(10px, 25px);
   font-weight: bolder;
 `
 export const InputprofileImg = styled.input`

@@ -13,7 +13,7 @@ export const DetailButton = (props) => {
           {liked ? '❤️ Like' : '🤍 Like'}
         </St.LikeButton>
         <br />
-        <Link to={`/edit/${encodeURIComponent(id)}`} state={{
+        <Link to={`/edit/${id}`} state={{
           img,
           title,
           createdBy,

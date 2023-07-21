@@ -15,6 +15,7 @@ const EditCategory = (props) => {
 
   return (
     <div>
+      <div>category</div>
       <DropdownWrapper>
         <DropdownHeader
           onClick={() => {

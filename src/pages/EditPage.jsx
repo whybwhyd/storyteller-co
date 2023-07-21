@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef} from 'react'
 import * as St from '../style/StWriteStyled'
 import DefaultImg from '../assets/DefaultImg.png'
 import EditCategory from '../components/EditCategory'
-import { collection, getDocs, query, doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage, db } from '../firebase'
 import { EditButton, UpButton } from '../components/Button'
@@ -12,24 +12,9 @@ const EditPage = () => {
   const { state } = useLocation()
   const { title, createdBy, body, director, img, category } = state
   const [imgFile, setImgFile] = useState(img)
-  const [infos, setInfos] = useState([])
   const { id } = useParams()
-
-  // 상위 컴포넌트에서 id 가져올 수 있으면 삭제
-  useEffect(() => {
-    const fetchData = async () => {
-      // infos 정보 가져오기
-      const q = query(collection(db, 'infos'))
-      const querySnapshot = await getDocs(q)
-      const initialInfos = []
-      querySnapshot.forEach((doc) => {
-        initialInfos.push({ id: doc.id, ...doc.data() })
-      })
-      setInfos(initialInfos)
-    }
-    fetchData()
-  }, [])
-
+  const imgRef = useRef()
+  const navigate = useNavigate()
   const [item, setItem] = useState({
     title,
     createdBy,
@@ -37,7 +22,6 @@ const EditPage = () => {
     director,
     category,
   })
-  const imgRef = useRef()
   const onChange = (event) => {
     const { value, name } = event.target
     setItem({
@@ -45,9 +29,6 @@ const EditPage = () => {
       [name]: value,
     })
   }
-
-  const navigate = useNavigate()
-
   // 이미지 업로드 input의 onChange
   const saveImgFile = async () => {
     const file = imgRef.current.files[0]
@@ -59,11 +40,9 @@ const EditPage = () => {
       }
     }
   }
-
   const deleteImg = () => {
     setImgFile('')
   }
-
   const handleSaveOption = (option) => {
     setItem((prev) => {
       if (prev.category === option) {
@@ -76,7 +55,6 @@ const EditPage = () => {
       }
     })
   }
-
   const handleEdit = async (event) => {
     event.preventDefault()
     if (!imgFile || !title || !createdBy || !body || !director) {
@@ -89,7 +67,6 @@ const EditPage = () => {
       await uploadBytes(imageRef, imgRef.current.files[0])
       downloadURL = await getDownloadURL(imageRef)
     }
-
     const newInfo = {
       id: item.title,
       title: item.title,
@@ -99,19 +76,11 @@ const EditPage = () => {
       director: item.director,
       category: item.category,
     }
-
-    setInfos((prev) => {
-      return [...prev, newInfo]
-    })
-
     const infoRef = doc(db, 'infos', title)
-
     await updateDoc(infoRef, newInfo)
-
     alert('저장되었습니다!')
     navigate(`/detail/:${id}`)
   }
-
   return (
     <div id='1'>
       <St.Grid>
@@ -119,7 +88,6 @@ const EditPage = () => {
           <St.ImgUpload>
             <div>
               <St.UploadImgFile src={imgFile ? imgFile : DefaultImg} alt='이미지 업로드' />
-              <br />
               <St.UdLabels>
                 <St.UploadLabel>
                   <label htmlFor='inputprofileImg'>사진 업로드</label>
@@ -138,8 +106,6 @@ const EditPage = () => {
                   <St.DeleteprofileImg id='deleteprofileImg' type='button' onClick={deleteImg} />
                 </St.DeleteLabel>
               </St.UdLabels>
-              <br />
-              <br />
             </div>
           </St.ImgUpload>
           <St.Body>
@@ -153,8 +119,7 @@ const EditPage = () => {
               value={item.createdBy}
               onChange={onChange}
             />
-            <div>category</div>
-            {/* 카테고리 선택 드롭다운 */}
+            {/* 카테고리 드롭다운 컴포넌트*/}
             <EditCategory handleSaveOption={handleSaveOption} category={category} />
             <div>body</div>
             <St.BodyTextarea
@@ -166,7 +131,6 @@ const EditPage = () => {
               onChange={onChange}
             />
           </St.Body>
-
           <St.Director>
             <div>author-context</div>
             <St.DirectorTextarea
@@ -179,7 +143,6 @@ const EditPage = () => {
             />
           </St.Director>
           <St.YoutubeContext>youtube-privew</St.YoutubeContext>
-          {/* api 불러온 후 수정 */}
           <EditButton handleEdit={handleEdit} id={id} />
         </div>
       </St.Grid>

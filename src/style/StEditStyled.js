@@ -31,11 +31,11 @@ export const UdLabels = styled.div`
   justify-content: center;
 `
 export const UploadLabel = styled.div`
-  transform: translate(-20px, 40px);
+  transform: translate(-20px, 30px);
   font-weight: bolder;
 `
 export const DeleteLabel = styled.div`
-  transform: translate(10px, 40px);
+  transform: translate(10px, 30px);
   font-weight: bolder;
 `
 export const InputprofileImg = styled.input`

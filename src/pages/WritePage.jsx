@@ -16,6 +16,7 @@ const WritePage = () => {
     createdBy: '',
     body: '',
     director: '',
+    youtube:'',
   })
   const imgRef = useRef()
   const onChange = (event) => {
@@ -25,7 +26,7 @@ const WritePage = () => {
       [name]: value,
     })
   }
-  const { title, createdBy, body, director } = item
+  const { title, createdBy, body, director,youtube } = item
 
   const navigate = useNavigate()
 
@@ -85,6 +86,10 @@ const WritePage = () => {
     })
     navigate('/admin')
   }
+
+  const regex = /v=([a-zA-Z0-9_-]{11})/;
+  const match = youtube.match(regex);
+
   return (
     <div id='1'>
       <St.Grid>
@@ -144,8 +149,18 @@ const WritePage = () => {
             onChange={onChange}
           />
         </St.Director>
-        <St.YoutubeContext>youtube-privew</St.YoutubeContext>
-        {/* api 불러온 후 수정 */}
+        <St.YoutubeContext>
+          <div>
+            <div>youtube-privew</div>
+            <input
+            name='youtube'
+            placeholder='미리보기 유튜브 링크를 넣어주세요'
+            value={youtube}
+            onChange={onChange}
+            />
+            <button>저장하기</button>
+          </div>
+          </St.YoutubeContext>
         <WriteButton handleSave={handleSave} />
       </St.Grid>
       <UpButton />
