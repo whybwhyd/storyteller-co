@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Cards from '../components/Cards'
 import { useQuery } from 'react-query'
 import { getPosts } from '../axios/api'
+import { FaSearch } from 'react-icons/fa'
 
 import * as St from '../style/StSearchStyled'
 
@@ -21,7 +22,7 @@ const SearchPage = () => {
   const [noResults, setNoResults] = useState(null)
 
   const [nowTrending, setNowTrending] = useState(null)
-  const [recommend, setRecommend] = useState(null)
+  // const [recommend, setRecommend] = useState(null)
 
   // function to handle category button clicks
   const openCategoryHandler = (category) => {
@@ -41,13 +42,13 @@ const SearchPage = () => {
     if (filteredCategoryResults.length > 0) {
       setCategoryResults(filteredCategoryResults) // 결과가 있을 경우 결과로 보여주고
       setNoResults(false) // 결과없음 섹션 숨기기
-      setRecommend(false)
-      // setNowTrending(false)
+      // setRecommend(false)
+      setNowTrending(true)
     } else {
       setSearchResults(null) // 결과가 없을 경우 검색 결과를 초기화
       setNoResults(true) // 결과없음 섹션 추가
-      setRecommend(true)
-      // setNowTrending(true)
+      // setRecommend(true)
+      setNowTrending(false)
     }
 
     console.log(selectedCategory) // 셀렉한 카테고리값 확인
@@ -65,11 +66,13 @@ const SearchPage = () => {
     if (filteredSearchResults.length > 0) {
       setSearchResults(filteredSearchResults) // 결과가 있을 경우 결과로 저장
       setNoResults(false)
-      setRecommend(false)
+      // setRecommend(false)
+      setNowTrending(true)
     } else {
       setSearchResults(null) // 결과가 없을 경우 검색 결과를 초기화
       setNoResults(true) // 결과 없음 섹션 추가
-      setRecommend(true)
+      // setRecommend(true)
+      setNowTrending(false)
     }
     console.log('Search Input', searchInput)
     console.log('Search Results', filteredSearchResults)
@@ -77,56 +80,61 @@ const SearchPage = () => {
 
   return (
     <>
-      <h1>SearchPage</h1>
-      <input
-        type='text'
-        placeholder='Search Here'
-        onChange={(e) => {
-          setSearchInput(e.target.value)
-        }}
-      />
-      <St.SearchBtn onClick={() => openSearchResultsHandler(searchInput)}>Search</St.SearchBtn>
-      <div>
+      <h1>Search Home</h1>
+      <St.SearchInput>
+        <St.Input
+          type='text'
+          placeholder='Search Here'
+          onChange={(e) => {
+            setSearchInput(e.target.value)
+          }}
+        />
+        <St.SearchBtn onClick={() => openSearchResultsHandler(searchInput)}>
+          <FaSearch />
+        </St.SearchBtn>
+      </St.SearchInput>
+
+      <St.CategoryButtons>
         <St.CategoryBtn onClick={() => openCategoryHandler('category1')}>Category 1</St.CategoryBtn>
         <St.CategoryBtn onClick={() => openCategoryHandler('category2')}>Category 2</St.CategoryBtn>
         <St.CategoryBtn onClick={() => openCategoryHandler('category3')}>Category 3</St.CategoryBtn>
         <St.CategoryBtn onClick={() => openCategoryHandler('category4')}>Category 4</St.CategoryBtn>
-      </div>
+      </St.CategoryButtons>
 
       {/* Show the selected category's card list */}
       {selectedCategory && (
         <div>
-          <h2>Results In ... {selectedCategory}</h2>
-          <div>카테고리별 카드리스트</div>
+          <h1>Results In "{selectedCategory}"</h1>
+          <p>카테고리별 카드리스트</p>
           <Cards data={categoryResults} />
         </div>
       )}
 
       {searchResults && (
         <div>
-          <h2>Results For ...</h2>
-          <div>검색값 카드리스트</div>
+          <h1>Results For "{searchInput}"</h1>
+          <p>검색값 카드리스트</p>
           <Cards data={searchResults}></Cards>
         </div>
       )}
       {noResults && (
         <div>
-          <h2>No Results...</h2>
-          <div>검색값이 없습니다</div>
+          <h1>No Results...</h1>
+          <p>검색값이 없습니다</p>
         </div>
       )}
       {nowTrending || (
         <div>
-          <h2>Now Trending</h2>
+          <h1>Now Trending</h1>
           <Cards data={data} />
         </div>
       )}
-      {recommend && (
+      {/* {recommend && (
         <div>
-          <h2>추천 드라마</h2>
+          <h1>추천 드라마</h1>
           <Cards data={data} />
         </div>
-      )}
+      )} */}
     </>
   )
 }
