@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
+import logo1 from '../assets/logo1.png'
 
 const MainPage = () => {
 
   const navigate = useNavigate()
   const { isLoading, data } = useQuery('infos', getPosts)
-
   console.log(data)
 
   if (isLoading) {
@@ -42,18 +42,19 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category1')
-
-              .map((Post) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={Post.title}
+                    key={info.title}
+
                     onClick={() => {
                       navigate('/details/:id')
                     }}
                   >
                     <StImg></StImg>
-                    <div> 제목 : {Post.title}</div>
-                    <StContentsDiv> 줄거리 : {Post.body}</StContentsDiv>
+
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -66,18 +67,18 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category2')
-
-              .map((Post) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={Post.title}
+                    key={info.title}
+
                     onClick={() => {
                       navigate('/details/:id')
                     }}
                   >
                     <StImg></StImg>
-                    <div> 제목 : {Post.title}</div>
-                    <StContentsDiv> 줄거리 : {Post.body}</StContentsDiv>
+                    <div> 제목 : {info.title}</div>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
