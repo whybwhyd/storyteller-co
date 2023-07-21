@@ -7,6 +7,7 @@ import SearchPage from '../pages/SearchPage'
 import AboutPage from '../pages/AboutPage'
 import Write from '../pages/Write'
 import Layout from './Layout'
+import PreviewPage from '../pages/PreviewPage'
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/admin' element={<AdminPage />} />
           <Route path='/write' element={<Write />} />
+          <Route path='/preview' element={<PreviewPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

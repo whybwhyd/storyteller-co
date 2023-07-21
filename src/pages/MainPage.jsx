@@ -3,8 +3,9 @@ import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
-import { getStorys } from '../axios/api'
+import { getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
+import logo1 from '../assets/logo1.png'
 
 const MainPage = () => {
   const navigate = useNavigate()
@@ -42,11 +43,10 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category1')
-
-              .map((story) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={story.title}
+                    key={info.title}
                     onClick={() => {
                       navigate(`/details/:${story.title}`)
                     }}
@@ -66,11 +66,10 @@ const MainPage = () => {
           <StCategory1Div>
             {data
               .filter((item) => item.category === 'category2')
-
-              .map((story) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={story.title}
+                    key={info.title}
                     onClick={() => {
                       navigate(`/details/:${story.title}`)
                     }}
