@@ -31,4 +31,26 @@ const getPosts = async () => {
   }
 }
 
-export { getPosts, getStorys }
+const YOUTUBE_API_KEY = 'AIzaSyAk7SRjN8fig94Eq5VKi5AgpXbVqOD8ZnM'
+// 'https://www.googleapis.com/youtube/v3/playlistItems.list' ← 링크 변경 시도 필요
+
+const searchVideos = async (searchInput) => {
+  try {
+    const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+      params: {
+        q: searchInput,
+        key: YOUTUBE_API_KEY,
+        part: 'snippet',
+        maxResults: 4, // 변경 가능한 결과 수
+        type: 'video',
+      },
+    })
+
+    return response.data.items
+  } catch (error) {
+    console.error('Error fetching YouTube data:', error)
+    return []
+  }
+}
+
+export { getPosts, getStorys, searchVideos }

@@ -48,7 +48,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/details/:${info.title}`)
+                      navigate(`/detail/:${info.title}`)
                     }}
                   >
                     <StImg src={info.img} alt='드라마 이미지'></StImg>
@@ -71,7 +71,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/details/:${info.title}`)
+                      navigate(`/detail/:${info.title}`)
                     }}
                   >
                     <div>
@@ -97,7 +97,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate(`/details/:${story.title}`)
+                      navigate(`/detail/:${story.title}`)
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
@@ -120,7 +120,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate(`/details/:${story.title}`)
+                      navigate(`/detail/:${story.title}`)
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
