@@ -2,21 +2,22 @@ import axios from 'axios'
 import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 
-// const getStorys = async () => {
-//   const q = query(collection(db, 'infos'))
-//   const querySnapshot = await getDocs(q)
+const getStorys = async () => {
+  // 변경사항 storys infos
+  const q = query(collection(db, 'infos'))
+  const querySnapshot = await getDocs(q)
 
-//   const initialStorys = []
+  const initialStorys = []
 
-//   querySnapshot.forEach((doc) => {
-//     const data = {
-//       id: doc.id,
-//       ...doc.data(),
-//     }
-//     initialStorys.push(data)
-//   })
-//   return initialStorys
-// }
+  querySnapshot.forEach((doc) => {
+    const data = {
+      id: doc.id,
+      ...doc.data(),
+    }
+    initialStorys.push(data)
+  })
+  return initialStorys
+}
 
 const getPosts = async () => {
   try {
@@ -30,4 +31,4 @@ const getPosts = async () => {
   }
 }
 
-export { getPosts }
+export { getPosts, getStorys }

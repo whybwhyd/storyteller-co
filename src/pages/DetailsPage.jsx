@@ -5,6 +5,7 @@ import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import Drama1 from '../assets/Drama1.jpg'
 import { DetailButton, UpButton } from '../components/Button'
+import DefaultImg from '../assets/DefaultImg.png'
 
 const DetailsPage = () => {
   const [liked, setLiked] = useState(false)
@@ -32,14 +33,14 @@ const DetailsPage = () => {
   if (!infos) {
     return <div>Loading...</div>
   }
-  const filteredInfo = infos.find((info) => ":"+ info.id === title)
+  const filteredInfo = infos.find((info) => ':' + info.id === title)
   return (
     <div id='1'>
       <St.Grid>
         {/* 특정 id에 해당하는 정보만 렌더링 */}
         {filteredInfo && (
           <div>
-            <St.DramaImg src={Drama1} alt='알고있지만 드라마 사진' />
+            <St.DramaImg src={filteredInfo.img ? filteredInfo.img : DefaultImg} alt='이미지 업로드' />
             <h4> {filteredInfo.createdBy}</h4>
             <St.Context>
               <h2>{filteredInfo.title}</h2>

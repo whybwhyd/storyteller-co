@@ -100,7 +100,6 @@ const SearchPage = () => {
         <St.CategoryBtn onClick={() => openCategoryHandler('category3')}>Category 3</St.CategoryBtn>
         <St.CategoryBtn onClick={() => openCategoryHandler('category4')}>Category 4</St.CategoryBtn>
       </St.CategoryButtons>
-
       {/* Show the selected category's card list */}
       {selectedCategory && (
         <div>

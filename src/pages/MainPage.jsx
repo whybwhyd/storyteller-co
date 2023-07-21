@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
 import logo1 from '../assets/logo1.png'
 
 const MainPage = () => {
-
   const navigate = useNavigate()
-  const { isLoading, data } = useQuery('infos', getPosts)
-  console.log(data)
+  const { title } = useParams()
+  console.log('title=>', title)
+
+  const { isLoading, data } = useQuery('infos', getStorys)
 
   if (isLoading) {
     return <div>로딩중입니다..</div>
@@ -46,15 +47,13 @@ const MainPage = () => {
                 return (
                   <StCategoryInputDiv
                     key={info.title}
-
                     onClick={() => {
-                      navigate('/details/:id')
+                      navigate(`/details/:${story.title}`)
                     }}
                   >
-                    <StImg></StImg>
-
-                    <div> 제목 : {info.title}</div>
-                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -71,14 +70,62 @@ const MainPage = () => {
                 return (
                   <StCategoryInputDiv
                     key={info.title}
-
                     onClick={() => {
-                      navigate('/details/:id')
+                      navigate(`/details/:${story.title}`)
                     }}
                   >
-                    <StImg></StImg>
-                    <div> 제목 : {info.title}</div>
-                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
+                    <div>
+                      <StImg src={story.img} alt='드라마 이미지'></StImg>
+                    </div>
+
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
+          </StCategory1Div>
+        </div>
+
+        <h2>category3</h2>
+        <div>
+          <StCategory1Div>
+            {data
+              .filter((item) => item.category === 'category3')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate(`/details/:${story.title}`)
+                    }}
+                  >
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
+          </StCategory1Div>
+        </div>
+
+        <h2>category4</h2>
+        <div>
+          <StCategory1Div>
+            {data
+              .filter((item) => item.category === 'category4')
+
+              .map((story) => {
+                return (
+                  <StCategoryInputDiv
+                    key={story.title}
+                    onClick={() => {
+                      navigate(`/details/:${story.title}`)
+                    }}
+                  >
+                    <StImg src={story.img} alt='드라마 이미지'></StImg>
+                    <div> 제목 : {story.title}</div>
+                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -130,7 +177,10 @@ const StCategoryInputDiv = styled.div`
 
   margin: 20px;
 
-  border: 1px solid black;
+  object-fit: cover;
+
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
 `
