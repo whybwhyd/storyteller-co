@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getStorys, getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
-import logo1 from '../assets/logo1.png'
 
 const MainPage = () => {
   const navigate = useNavigate()

@@ -32,10 +32,11 @@ const getPosts = async () => {
 }
 
 const YOUTUBE_API_KEY = 'AIzaSyAk7SRjN8fig94Eq5VKi5AgpXbVqOD8ZnM'
-// 'https://www.googleapis.com/youtube/v3/playlistItems.list' ← 링크 변경 시도 필요
 
 const searchVideos = async (searchInput) => {
   try {
+    // 'https://www.googleapis.com/youtube/v3/playlistItems.list' ← 링크 변경 시도 필요
+    // https://developers.google.com/youtube/v3/docs/playlistItems?hl=ko ← 속성 확인
     const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         q: searchInput,

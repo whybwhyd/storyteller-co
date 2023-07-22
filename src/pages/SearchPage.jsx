@@ -76,8 +76,8 @@ const SearchPage = () => {
       setRecommendBySearch(true) // 검색어 관련 추천 드라마
       setNowTrending(false)
     }
-    console.log('Search Input', searchInput)
-    console.log('Search Results', filteredSearchResults)
+    // console.log('Search Input', searchInput)
+    // console.log('Search Results', filteredSearchResults)
   }
 
   return (
