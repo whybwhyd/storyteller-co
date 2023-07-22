@@ -1,17 +1,14 @@
 import React, { useState, useRef } from 'react'
 import * as St from '../style/StWriteStyled'
 import DefaultImg from '../assets/DefaultImg.png'
-import YtDefaultImg from '../assets/YtDefaultImg.jpg'
 import Select from '../components/Select'
 import { doc, setDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage, db } from '../firebase'
-import { WriteButton, UpButton } from '../components/Button'
+import { WriteButton, YoutubeButton, UpButton } from '../components/Button'
 import { useNavigate } from 'react-router-dom'
-import Youtube from 'react-youtube'
 
 const WritePage = () => {
-  // const [infos, setInfos] = useState([])
   const [item, setItem] = useState({
     title: '',
     createdBy: '',
@@ -24,6 +21,7 @@ const WritePage = () => {
   const [imgFile, setImgFile] = useState(null)
   const [showYoutubePreview, setShowYoutubePreview] = useState(false)
   const imgRef = useRef()
+  const YtRef = useRef('')
   const navigate = useNavigate()
 
   const onChange = (event) => {
@@ -54,9 +52,30 @@ const WritePage = () => {
     }))
   }
 
+  const handleYoutubeUpload = () => {
+    try {
+      const url = new URL(youtubeUrl)
+      const searchParams = new URLSearchParams(url.search)
+      setItem((prev) => ({
+        ...prev,
+        youtubeUrl: searchParams.get('v') || '',
+      }))
+      setShowYoutubePreview(true)
+      YtRef.current = youtubeUrl
+    } catch (error) {
+      alert('유효한 유튜브 URL을 입력해주세요!')
+    }
+  }
+  const handleYoutubeDelete = () => {
+    setItem((prev) => ({
+      ...prev,
+      youtubeUrl: '',
+    }))
+    setShowYoutubePreview(false)
+  }
+
   const handleSave = async (event) => {
     event.preventDefault()
-    // const { title, createdBy, body, director, youtubeUrl, category } = item;
     if (!imgFile || !title || !createdBy || !body || !director || !youtubeUrl || !category) {
       alert('빈칸을 채워주세요!')
       return
@@ -65,6 +84,7 @@ const WritePage = () => {
     const imageRef = ref(storage, `${title}/${imgRef.current.files[0].name}`)
     await uploadBytes(imageRef, imgRef.current.files[0])
     const downloadURL = await getDownloadURL(imageRef)
+    const YtFullUrl = YtRef.current
 
     const newInfo = {
       id: title,
@@ -74,10 +94,8 @@ const WritePage = () => {
       img: downloadURL,
       director,
       category,
+      youtubeUrl: YtFullUrl,
     }
-    // setInfos((prev) => {
-    //   return [...prev, newInfo]
-    // })
 
     const docRef = doc(db, 'infos', title)
     await setDoc(docRef, newInfo)
@@ -93,29 +111,6 @@ const WritePage = () => {
     })
     navigate('/admin')
   }
-
-  const handleYoutubeUpload = () => {
-    try {
-      const url = new URL(youtubeUrl)
-      const searchParams = new URLSearchParams(url.search)
-      setItem((prev) => ({
-        ...prev,
-        youtubeUrl: searchParams.get('v') || '',
-      }))
-      setShowYoutubePreview(true)
-    } catch (error) {
-      alert('유효한 유튜브 URL을 입력해주세요!')
-    }
-  }
-
-  const handleYoutubeDelete = () => {
-    setItem((prev) => ({
-      ...prev,
-      youtubeUrl: '',
-    }))
-    setShowYoutubePreview(false)
-  }
-
   return (
     <div id='1'>
       <St.Grid>
@@ -176,7 +171,6 @@ const WritePage = () => {
           />
         </St.Director>
         <St.YoutubeContext>
-          <div>
             <div>youtube-privew</div>
             <St.InputYoutubeUrl
               name='youtubeUrl'
@@ -184,17 +178,12 @@ const WritePage = () => {
               value={youtubeUrl}
               onChange={onChange}
             />
-            {showYoutubePreview ? 
-           ( <>
-            <St.YtBtn onClick={handleYoutubeDelete}>삭제</St.YtBtn>
-            <Youtube videoId={youtubeUrl} /> 
-            </>)
-            : 
-            (<>
-            <St.YtBtn onClick={handleYoutubeUpload}>등록</St.YtBtn>
-            <St.Ytimg src={YtDefaultImg} alt='유튜브 이미지' />
-            </>)}
-          </div>
+            <YoutubeButton
+              handleYoutubeDelete={handleYoutubeDelete}
+              youtubeUrl={youtubeUrl}
+              handleYoutubeUpload={handleYoutubeUpload}
+              showYoutubePreview={showYoutubePreview}
+            />
         </St.YoutubeContext>
         <WriteButton handleSave={handleSave} />
       </St.Grid>

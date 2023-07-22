@@ -7,7 +7,6 @@ import SearchPage from '../pages/SearchPage'
 import AboutPage from '../pages/AboutPage'
 import WritePage from '../pages/WritePage'
 import EditPage from '../pages/EditPage'
-import YoutubeTest from '../pages/YoutubeTest'
 import Layout from './Layout'
 import PreviewPage from '../pages/PreviewPage'
 
@@ -23,7 +22,6 @@ const Router = () => {
           <Route path='/admin' element={<AdminPage />} />
           <Route path='/write' element={<WritePage />} />
           <Route path='/edit/:id' element={<EditPage />} />
-          <Route path='/youtube' element={<YoutubeTest />} />
           <Route path='/preview' element={<PreviewPage />} />
         </Routes>
       </Layout>

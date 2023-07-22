@@ -5,6 +5,7 @@ import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import { DetailButton, UpButton } from '../components/Button'
 import DefaultImg from '../assets/DefaultImg.png'
+import Youtube from 'react-youtube'
 
 const DetailPage = () => {
   const [liked, setLiked] = useState(false)
@@ -46,7 +47,12 @@ const DetailPage = () => {
               <h2>제작정보</h2>
               <div>{filteredInfo.director}</div>
             </St.Context>
-            <St.YoutubeContext>youtube-privew</St.YoutubeContext>
+            <St.YoutubeContext>
+            <h3>youtube-privew</h3>
+              <div>
+              <Youtube videoId={filteredInfo.youtubeUrl.slice(-11)} />
+              </div>
+              </St.YoutubeContext>
             <DetailButton
               handleLike={handleLike}
               liked={liked}
@@ -57,6 +63,7 @@ const DetailPage = () => {
               createdBy={filteredInfo.createdBy}
               body={filteredInfo.body}
               director={filteredInfo.director}
+              youtubeUrl={filteredInfo.youtubeUrl}
             />
           </div>
         )}

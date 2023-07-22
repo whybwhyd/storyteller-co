@@ -76,8 +76,8 @@ export const Director = styled.div`
   color: #000;
 `
 export const InputYoutubeUrl = styled.input`
-  transform: translate(50px, 0px);
-  margin:30px auto 30px auto;
+  transform: translate(30px, 0px);
+  margin:30px 0px 30px 0px;
   width: 600px;
   height: 34px;
   border: none;
@@ -85,17 +85,6 @@ export const InputYoutubeUrl = styled.input`
     font-weight: bold;
     font-size: 15px;
   }
-`
-export const YtBtn = styled.button`
-  z-index:999;
-  transform: translate(-50px, 3px);
-  background-color: #2d8675;
-  color: #e9e6d8;
-  width: 100px;
-  height: 36px;
-  border: 4px solid #2d8675;
-  font-size: 18px;
-  font-weight: bolder;
 `
 export const YoutubeContext = styled.div`
   border: 2px solid black;
@@ -105,30 +94,8 @@ export const YoutubeContext = styled.div`
   border: none;
   background-color: #d9d9d9;
   margin-bottom: 50px;
-  display: grid;
-  align-content: space-evenly;
   text-align: center;
   color: #000;
-`
-export const Ytimg = styled.img`
-  width: 640px;
-  height:360px;
-`
-export const Up = styled.p`
-  transform: translateY(-90%);
-`
-export const UpButton = styled.button`
-  background-color: #2d8675;
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  font-size: 35px;
-  font-weight: bolder;
-  border-radius: 40px;
-  position: fixed;
-  bottom: 60px;
-  right: 120px;
 `
 export const InputTitle = styled.input`
   transform: translate(80px, 0px);
