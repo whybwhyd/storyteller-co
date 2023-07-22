@@ -106,7 +106,7 @@ const EditPage = () => {
     const infoRef = doc(db, 'infos', title)
     await updateDoc(infoRef, newInfo)
     alert('저장되었습니다!')
-    navigate(`/detail/:${id}`)
+    // navigate(`/detail/:${id}`)
   }
   return (
     <div id='1'>

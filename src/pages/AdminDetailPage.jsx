@@ -3,17 +3,14 @@ import * as St from '../style/StDetailStyled'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs, query } from 'firebase/firestore'
 import { db } from '../firebase'
-import { DetailButton, UpButton } from '../components/Button'
+import { AdminDetailButton, UpButton } from '../components/Button'
 import DefaultImg from '../assets/DefaultImg.png'
 import Youtube from 'react-youtube'
 
-const DetailPage = () => {
-  const [liked, setLiked] = useState(false)
+const AdminDetailPage = () => {
   const [infos, setInfos] = useState([])
   const { id } = useParams()
-  const handleLike = () => {
-    setLiked(!liked)
-  }
+
   useEffect(() => {
     const fetchData = async () => {
       // infos 정보 가져오기
@@ -53,9 +50,15 @@ const DetailPage = () => {
               <Youtube videoId={filteredInfo.youtubeUrl.slice(-11)} />
               </div>
               </St.YoutubeContext>
-            <DetailButton
-              handleLike={handleLike}
-              liked={liked}
+            <AdminDetailButton
+              id={filteredInfo.title}
+              img={filteredInfo.img}
+              category={filteredInfo.category}
+              title={filteredInfo.title}
+              createdBy={filteredInfo.createdBy}
+              body={filteredInfo.body}
+              director={filteredInfo.director}
+              youtubeUrl={filteredInfo.youtubeUrl}
             />
           </div>
         )}
@@ -65,4 +68,4 @@ const DetailPage = () => {
   )
 }
 
-export default DetailPage
+export default AdminDetailPage

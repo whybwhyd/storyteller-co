@@ -6,29 +6,44 @@ import { useNavigate } from 'react-router-dom'
 import Youtube from 'react-youtube'
 import YtDefaultImg from '../assets/YtDefaultImg.jpg'
 
+export const AdminDetailButton = (props) => {
+  const { img, id, title, createdBy, body, director, category, youtubeUrl } = props
+  const navigate = useNavigate()
+  const handleCancel = () => {
+    navigate('/admin')
+  }
+  return (
+    <div>
+      <St.DetailButtonContainer>
+        <div>
+          <St.CancelButton onClick={handleCancel}>Cancel</St.CancelButton>
+          <Link
+            to={`/edit/${id}`}
+            state={{
+              img,
+              title,
+              createdBy,
+              body,
+              director,
+              category,
+              youtubeUrl,
+            }}
+          >
+            <St.EditButton>Edit</St.EditButton>
+          </Link>
+        </div>
+      </St.DetailButtonContainer>
+    </div>
+  )
+}
 export const DetailButton = (props) => {
-  const { handleLike, liked, img, id, title, createdBy, body, director, category, youtubeUrl } = props
+  const { handleLike, liked } = props
   return (
     <div>
       <St.DetailButtonContainer>
         <St.LikeButton liked={liked} onClick={handleLike}>
           {liked ? '❤️ Like' : '🤍 Like'}
         </St.LikeButton>
-        <br />
-        <Link
-          to={`/edit/${id}`}
-          state={{
-            img,
-            title,
-            createdBy,
-            body,
-            director,
-            category,
-            youtubeUrl,
-          }}
-        >
-          <St.EditButton>Edit</St.EditButton>
-        </Link>
       </St.DetailButtonContainer>
     </div>
   )
@@ -83,7 +98,7 @@ export const EditButton = (props) => {
   const { handleEdit, id } = props
   const navigate = useNavigate()
   const handleCancel = () => {
-    navigate(`/detail/:${id}`)
+    navigate(`/adminDetail/:${id}`)
   }
 
   return (
