@@ -1,19 +1,22 @@
-import React, { useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import * as St from '../style/StWriteStyled'
 import DefaultImg from '../assets/DefaultImg.png'
 import EditCategory from '../components/EditCategory'
 import { doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage, db } from '../firebase'
-import { EditButton, UpButton } from '../components/Button'
+import { YoutubeButton, EditButton, UpButton } from '../components/Button'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 
 const EditPage = () => {
   const { state } = useLocation()
-  const { title, createdBy, body, director, img, category } = state
+  const { title, createdBy, body, director, img, category, youtubeUrl } = state
+  console.log(youtubeUrl)
   const [imgFile, setImgFile] = useState(img)
+  const [showYoutubePreview, setShowYoutubePreview] = useState(false)
   const { id } = useParams()
   const imgRef = useRef()
+  const YtRef = useRef('')
   const navigate = useNavigate()
   const [item, setItem] = useState({
     title,
@@ -21,6 +24,7 @@ const EditPage = () => {
     body,
     director,
     category,
+    youtubeUrl,
   })
   const onChange = (event) => {
     const { value, name } = event.target
@@ -55,6 +59,28 @@ const EditPage = () => {
       }
     })
   }
+  const handleYoutubeUpload = () => {
+    try {
+      const url = new URL(item.youtubeUrl)
+      const searchParams = new URLSearchParams(url.search)
+      setItem((prev) => ({
+        ...prev,
+        youtubeUrl: searchParams.get('v') || '',
+      }))
+      setShowYoutubePreview(true)
+      YtRef.current = item.youtubeUrl
+    } catch (error) {
+      alert('유효한 유튜브 URL을 입력해주세요!')
+    }
+  }
+  const handleYoutubeDelete = () => {
+    setItem((prev) => ({
+      ...prev,
+      youtubeUrl: '',
+    }))
+    setShowYoutubePreview(false)
+  }
+
   const handleEdit = async (event) => {
     event.preventDefault()
     if (!imgFile || !title || !createdBy || !body || !director) {
@@ -75,11 +101,12 @@ const EditPage = () => {
       img: downloadURL,
       director: item.director,
       category: item.category,
+      youtubeUrl: item.youtubeUrl,
     }
     const infoRef = doc(db, 'infos', title)
     await updateDoc(infoRef, newInfo)
     alert('저장되었습니다!')
-    navigate(`/detail/:${id}`)
+    // navigate(`/detail/:${id}`)
   }
   return (
     <div id='1'>
@@ -142,7 +169,21 @@ const EditPage = () => {
               onChange={onChange}
             />
           </St.Director>
-          <St.YoutubeContext>youtube-privew</St.YoutubeContext>
+          <St.YoutubeContext>
+            <div>youtube-privew</div>
+            <St.InputYoutubeUrl
+              name='youtubeUrl'
+              placeholder='미리보기 유튜브 링크를 넣어주세요'
+              value={item.youtubeUrl}
+              onChange={onChange}
+            />
+            <YoutubeButton
+              handleYoutubeDelete={handleYoutubeDelete}
+              youtubeUrl={item.youtubeUrl.slice(-11)}
+              handleYoutubeUpload={handleYoutubeUpload}
+              showYoutubePreview={showYoutubePreview}
+            />
+          </St.YoutubeContext>
           <EditButton handleEdit={handleEdit} id={id} />
         </div>
       </St.Grid>

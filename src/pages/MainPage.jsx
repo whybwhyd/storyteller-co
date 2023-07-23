@@ -49,6 +49,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
+
                       navigate(`/detail/:${info.id}`)
 
                     }}
@@ -73,6 +74,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
+
                       navigate(`/detail/:${info.id}`)
 
                     }}

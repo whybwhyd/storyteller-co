@@ -20,6 +20,7 @@ export const ImgUpload = styled.div`
   align-content: space-evenly;
   text-align: center;
   margin: 50px auto 50px auto;
+  color: #000;
 `
 export const UploadImgFile = styled.img`
   transform: translate(0px, 10px);
@@ -59,6 +60,7 @@ export const Body = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color: #000;
 `
 export const Director = styled.div`
   background-color: #e9e6d8;
@@ -71,34 +73,29 @@ export const Director = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color: #000;
+`
+export const InputYoutubeUrl = styled.input`
+  transform: translate(30px, 0px);
+  margin:30px 0px 30px 0px;
+  width: 600px;
+  height: 34px;
+  border: none;
+  &::placeholder {
+    font-weight: bold;
+    font-size: 15px;
+  }
 `
 export const YoutubeContext = styled.div`
   border: 2px solid black;
   border-radius: 30px;
   width: 780px;
-  height: 350px;
+  height: 550px;
   border: none;
   background-color: #d9d9d9;
   margin-bottom: 50px;
-  display: grid;
-  align-content: space-evenly;
   text-align: center;
-`
-export const Up = styled.p`
-  transform: translateY(-90%);
-`
-export const UpButton = styled.button`
-  background-color: #2d8675;
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  font-size: 35px;
-  font-weight: bolder;
-  border-radius: 40px;
-  position: fixed;
-  bottom: 60px;
-  right: 120px;
+  color: #000;
 `
 export const InputTitle = styled.input`
   transform: translate(80px, 0px);

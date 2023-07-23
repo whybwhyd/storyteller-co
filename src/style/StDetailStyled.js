@@ -38,18 +38,20 @@ export const Context = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color:black;
 `
 export const YoutubeContext = styled.div`
   border: 2px solid black;
   border-radius: 30px;
   width: 780px;
-  height: 350px;
+  height: 550px;
   border: none;
   background-color: #d9d9d9;
   margin-bottom: 50px;
   display: grid;
   align-content: space-evenly;
   text-align: center;
+  color:black;
 `
 
 // 버튼 스타일 컴포넌트에 따로 넣기!!!!
@@ -123,4 +125,18 @@ export const UpButton = styled.button`
   position: fixed;
   bottom: 60px;
   right: 120px;
+`
+export const Ytimg = styled.img`
+  width: 640px;
+  height:360px;
+`
+export const YtBtn = styled.button`
+  transform: translate(-34px, 3px);
+  background-color: #2d8675;
+  color: #e9e6d8;
+  width: 100px;
+  height: 36px;
+  border: 4px solid #2d8675;
+  font-size: 18px;
+  font-weight: bolder;
 `
