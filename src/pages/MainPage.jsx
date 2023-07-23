@@ -50,6 +50,7 @@ const MainPage = () => {
                     key={info.title}
                     onClick={() => {
                       navigate(`/detail/:${info.id}`)
+
                     }}
                   >
                     <StImg src={info.img} alt='드라마 이미지'></StImg>
@@ -73,6 +74,7 @@ const MainPage = () => {
                     key={info.title}
                     onClick={() => {
                       navigate(`/detail/:${info.id}`)
+
                     }}
                   >
                     <div>
@@ -99,6 +101,7 @@ const MainPage = () => {
                     key={story.title}
                     onClick={() => {
                       navigate(`/detail/:${story.id}`)
+
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
@@ -122,6 +125,7 @@ const MainPage = () => {
                     key={story.title}
                     onClick={() => {
                       navigate(`/detail/:${story.id}`)
+
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>

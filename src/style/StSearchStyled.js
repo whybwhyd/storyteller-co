@@ -8,6 +8,7 @@ export const CategoryBtn = styled.button`
   border: 0;
   border-radius: 3px;
   cursor: pointer;
+  font-family: 'Hahmlet', serif;
 `
 
 export const CategoryButtons = styled.div`
@@ -22,6 +23,7 @@ export const SearchBtn = styled.button`
   border: 0;
   border-radius: 3px;
   cursor: pointer;
+  font-family: 'Hahmlet', serif;
 `
 export const Grid = styled.div`
   display: grid;
@@ -36,6 +38,7 @@ export const Input = styled.input`
   background: #153e4b;
   border: 1px solid #e9e6d8;
   padding-left: 7px;
+  font-family: 'Hahmlet', serif;
 
   &::placeholder {
     color: #e9e6d8;
@@ -48,4 +51,5 @@ export const Input = styled.input`
 `
 export const SearchInput = styled.div`
   display: flex;
+  font-family: 'Hahmlet', serif;
 `

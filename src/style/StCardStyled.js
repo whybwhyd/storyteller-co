@@ -4,7 +4,7 @@ export const Cards = styled.div`
   background-color: #e9e6d8;
   border-radius: 5px;
   color: #153e4b;
-  min-width: 20vh;
+  width: 30vh;
   min-height: 20vh;
   display: flex;
   flex-direction: column;
@@ -19,4 +19,10 @@ export const CardsList = styled.div`
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
+`
+export const CardsImg = styled.img`
+  width: 30vh;
+  height: 20vh;
+  object-fit: cover;
+  object-position: center center;
 `
