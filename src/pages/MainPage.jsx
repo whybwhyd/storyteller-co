@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getStorys, getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
+import { UpButton } from '../components/Button'
 import logo1 from '../assets/logo1.png'
 import YoutubeMain from './YoutubeMain'
 
@@ -20,7 +21,7 @@ const MainPage = () => {
   }
 
   return (
-    <div>
+    <div id='1'>
       <StContainerDiv>
         <StSearchImgDiv>
           <StMainImg
@@ -49,9 +50,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-
                       navigate(`/detail/:${info.id}`)
-
                     }}
                   >
                     <StImg src={info.img} alt='드라마 이미지'></StImg>
@@ -74,9 +73,7 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-
                       navigate(`/detail/:${info.id}`)
-
                     }}
                   >
                     <div>
@@ -103,7 +100,6 @@ const MainPage = () => {
                     key={story.title}
                     onClick={() => {
                       navigate(`/detail/:${story.id}`)
-
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
@@ -141,6 +137,7 @@ const MainPage = () => {
           </StCategory1Div>
         </div>
       </StContainerDiv>
+      <UpButton />
     </div>
   )
 }
