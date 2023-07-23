@@ -3,10 +3,9 @@ import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
-import { getStorys, getPosts } from '../axios/api'
+import { getStorys } from '../axios/api'
 import { useQuery } from 'react-query'
 import { UpButton } from '../components/Button'
-import logo1 from '../assets/logo1.png'
 import YoutubeMain from './YoutubeMain'
 
 const MainPage = () => {
@@ -114,25 +113,6 @@ const MainPage = () => {
         <h2>추천 페이지</h2>
         <div>
           <StCategory1Div>
-            {/* {data
-              .filter((item) => item.category === 'category4')
-
-              .map((story) => {
-                return (
-                  <StCategoryInputDiv
-                    key={story.title}
-                    onClick={() => {
-                      navigate(`/detail/:${story.id}`)
-
-                    }}
-                  >
-                    <StImg src={story.img} alt='드라마 이미지'></StImg>
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
-                  </StCategoryInputDiv>
-                )
-              })} */}
-            {/* 유투브 관련된거 시도중 */}
             <YoutubeMain />
           </StCategory1Div>
         </div>
@@ -178,27 +158,32 @@ const StFaSearchDiv = styled.div`
 `
 
 const StCategoryInputDiv = styled.div`
-  height: 150px;
-  width: 200px;
-
-  margin: 20px;
-
-  object-fit: cover;
-
-  border-radius: 5px 5px 5px 5px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.2);
-
+  background-color: #e9e6d8;
+  border-radius: 5px;
+  color: #153e4b;
+  width: 30vh;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  margin-right: 15px;
   cursor: pointer;
 `
 
 const StCategory1Div = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `
 
 const StImg = styled.img`
-  width: 200px;
-  height: 100px;
+  width: 30vh;
+  height: 20vh;
+  object-fit: cover;
+  object-position: center center;
 `
 const StContentsDiv = styled.div`
   overflow: hidden;
