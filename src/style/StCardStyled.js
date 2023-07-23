@@ -26,3 +26,9 @@ export const CardsImg = styled.img`
   object-fit: cover;
   object-position: center center;
 `
+
+export const ContentsDiv = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`

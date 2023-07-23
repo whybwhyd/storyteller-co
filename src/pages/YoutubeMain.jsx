@@ -31,6 +31,7 @@ function YoutubeMain() {
       })
       .catch(() => {})
   }, [])
+
   let videoID = []
 
   let [videoInfo, setVideoInfo] = useState([])
@@ -38,7 +39,7 @@ function YoutubeMain() {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=vwxKPgn3Mbo&id=VRI3GVZjFrM&id=CCOANmV-Qpg&id=aPAu-ePYfLg&id=stzQyxvSSt0&id=e0_a93-pabk&id=bNoJiT8cQ3Y&id=AapSj0ncwqU&id=v7WYUm2OyKI&id=b_u7pEZ5dUc&maxResults=4&key=AIzaSyAvy048qvDbI3b_F_JE1-QPMdMyDrVD9Io`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=vwxKPgn3Mbo&id=VRI3GVZjFrM&id=CCOANmV-Qpg&id=aPAu-ePYfLg&id=stzQyxvSSt0&id=e0_a93-pabk&id=bNoJiT8cQ3Y&id=AapSj0ncwqU&id=v7WYUm2OyKI&id=b_u7pEZ5dUc&maxResults=4&key=${YOUTUBE_API_KEY_MAIN}`
       )
       .then((res) => {
         console.log(res)
