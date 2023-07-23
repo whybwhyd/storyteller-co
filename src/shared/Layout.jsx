@@ -17,13 +17,17 @@ const StHeader = styled.div`
 
 const StFooter = styled.div`
   width: 100%;
-  height: 50px;
+  height: 120px;
   display: flex;
   background: #2d8675;
   color: #e9e6d8;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 12px;
+`
+const StFooterP = styled.p`
+  margin: 3px 0px 0px 20px;
+  font-size: 15px;
 `
 
 const StLayout = styled.div`
@@ -56,7 +60,14 @@ function Header() {
 function Footer() {
   return (
     <StFooter>
-      <span>footer</span>
+      <span>
+        <StFooterP>(주) StoryTeller | Team: 떡잎마을방범대</StFooterP>
+        <StFooterP>사업자등록번호: 123-45-6789 | 법인등록번호: 2020111-32703202</StFooterP>
+        <StFooterP>
+          연락처: 010-2023-0724/ github: https://github.com/hellokeitha/storyteller | 문의: Slack 떡잎마을방범대
+        </StFooterP>
+        <StFooterP>Copyright ⓒ 2023 StoryTeller All rights reserved.</StFooterP>
+      </span>
     </StFooter>
   )
 }

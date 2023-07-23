@@ -50,7 +50,7 @@ const DetailPage = () => {
             <St.YoutubeContext>
             <h3>youtube-privew</h3>
               <div>
-              <Youtube videoId={filteredInfo.youtubeUrl.slice(-11)} />
+              <Youtube videoId={filteredInfo.youtubeUrl.split("v=")[1].split("&")[0]} />
               </div>
               </St.YoutubeContext>
             <DetailButton
