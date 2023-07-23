@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import searchVideos from '../components/searchVideos'
+import { searchVideos } from '../axios/api'
 
 const PreviewPage = () => {
   const [searchTerm, setSearchTerm] = useState('')

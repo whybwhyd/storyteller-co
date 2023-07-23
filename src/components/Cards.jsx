@@ -6,7 +6,7 @@ function Cards({ data }) {
   const navigate = useNavigate()
 
   const navigateToDetailHandler = (id) => {
-    navigate(`/details/:${id}`)
+    navigate(`/detail/:${id}`)
   }
 
   return (
@@ -14,11 +14,11 @@ function Cards({ data }) {
       <St.CardsList>
         {data.map((item, index) => (
           <St.Cards key={index} onClick={() => navigateToDetailHandler(item.id)}>
-            {/* <div>{item.img}</div> */}
+            <St.CardsImg src={item.img} />
             <div>{item.category}</div>
             <div>{item.title}</div>
-            <div>{item.body}</div>
-            <div>{item.director}</div>
+            {/* <div>{item.body}</div> */}
+            {/* <div>{item.director}</div> */}
             <div>{item.createdBy}</div>
           </St.Cards>
         ))}
