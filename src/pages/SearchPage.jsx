@@ -9,7 +9,7 @@ import Recommend from '../components/Recommend'
 
 const SearchPage = () => {
   // useQuery로 데이터 전체 불러오기
-  const { data } = useQuery('infos', getPosts)
+  const { data, isLoading } = useQuery('infos', getPosts) // isLoading  속성으로 데이터 로딩상태 확인 → 데이터가 로드되지 않은 상태에서 map 사용하려는 에러 방지 성공!!
 
   // state to keep track of the selected category
   const [selectedCategory, setSelectedCategory] = useState(null)
@@ -35,10 +35,10 @@ const SearchPage = () => {
     setSearchResults(null) // Clear search results
     setRecommendBySearch(null)
     // Reset the noResults state if it was set
-    // setNoResults(false)
+    setNoResults(false)
 
     // Filter the data based on the selected category
-    const filteredCategoryResults = data.filter((post) => post.category === category)
+    const filteredCategoryResults = data?.filter((post) => post.category === category)
     setCategoryResults(filteredCategoryResults)
 
     if (filteredCategoryResults.length > 0) {
@@ -102,45 +102,69 @@ const SearchPage = () => {
         <St.CategoryBtn onClick={() => openCategoryHandler('category4')}>Category 4</St.CategoryBtn>
       </St.CategoryButtons>
       {/* Show the selected category's card list */}
-      {selectedCategory && (
-        <div>
-          <h1>Results In "{selectedCategory}"</h1>
-          <p>카테고리별 카드리스트</p>
-          <Cards data={categoryResults} />
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        selectedCategory && (
+          <div>
+            <h1>Results In "{selectedCategory}"</h1>
+            <p>카테고리별 카드리스트</p>
+            <Cards data={categoryResults} />
+          </div>
+        )
       )}
-      {searchResults && (
-        <div>
-          <h1>Results For "{searchInput}"</h1>
-          <p>검색값 카드리스트</p>
-          <Cards data={searchResults}></Cards>
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        searchResults && (
+          <div>
+            <h1>Results For "{searchInput}"</h1>
+            <p>검색값 카드리스트</p>
+            <Cards data={searchResults}></Cards>
+          </div>
+        )
       )}
-      {noResults && (
-        <div>
-          <h1>No Results...</h1>
-          <p>검색값이 없습니다</p>
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        noResults && (
+          <div>
+            <h1>No Results...</h1>
+            <p>검색값이 없습니다</p>
+          </div>
+        )
       )}
-      {recommend && (
-        <div>
-          <h1>Recommend Stories</h1>
-          <p> because you have searched..."{selectedCategory}"</p>
-          <Recommend data={selectedCategory} />
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        recommend && (
+          <div>
+            <h1>Recommend Stories</h1>
+            <p> because you have searched..."{selectedCategory}"</p>
+            <Recommend data={selectedCategory} />
+          </div>
+        )
       )}
-      {recommendBySearch && (
-        <div>
-          <h1>Recommend Stories</h1>
-          <p> because you have searched..."{searchInput}"</p>
-          <Recommend data={searchInput} />
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        recommendBySearch && (
+          <div>
+            <h1>Recommend Stories</h1>
+            <p> because you have searched..."{searchInput}"</p>
+            <Recommend data={searchInput} />
+          </div>
+        )
       )}
-      {nowTrending || (
-        <div>
-          <h1>Now Trending</h1>
-          <Cards data={data} />
-        </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        nowTrending || (
+          <div>
+            <h1>Now Trending</h1>
+            <Cards data={data} />
+          </div>
+        )
       )}
     </>
   )
