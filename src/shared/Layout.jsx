@@ -34,6 +34,7 @@ const StLayout = styled.div`
   align-items: center;
   min-height: 90vh;
   padding: 80px;
+  font-family: 'Hahmlet', serif;
 `
 
 const StLogo = styled.img`

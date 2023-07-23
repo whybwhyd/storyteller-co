@@ -6,11 +6,12 @@ import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getStorys, getPosts } from '../axios/api'
 import { useQuery } from 'react-query'
 import logo1 from '../assets/logo1.png'
+import YoutubeMain from './YoutubeMain'
 
 const MainPage = () => {
   const navigate = useNavigate()
-  const { title } = useParams()
-  console.log('title=>', title)
+  const { id } = useParams()
+  console.log('title=>', id)
 
   const { isLoading, data } = useQuery('infos', getStorys)
 
@@ -48,7 +49,9 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/detail/:${info.title}`)
+
+                      navigate(`/detail/:${info.id}`)
+
                     }}
                   >
                     <StImg src={info.img} alt='드라마 이미지'></StImg>
@@ -71,7 +74,9 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={info.title}
                     onClick={() => {
-                      navigate(`/detail/:${info.title}`)
+
+                      navigate(`/detail/:${info.id}`)
+
                     }}
                   >
                     <div>
@@ -97,7 +102,8 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate(`/detail/:${story.title}`)
+                      navigate(`/detail/:${story.id}`)
+
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
@@ -109,10 +115,10 @@ const MainPage = () => {
           </StCategory1Div>
         </div>
 
-        <h2>category4</h2>
+        <h2>추천 페이지</h2>
         <div>
           <StCategory1Div>
-            {data
+            {/* {data
               .filter((item) => item.category === 'category4')
 
               .map((story) => {
@@ -120,7 +126,8 @@ const MainPage = () => {
                   <StCategoryInputDiv
                     key={story.title}
                     onClick={() => {
-                      navigate(`/detail/:${story.title}`)
+                      navigate(`/detail/:${story.id}`)
+
                     }}
                   >
                     <StImg src={story.img} alt='드라마 이미지'></StImg>
@@ -128,7 +135,9 @@ const MainPage = () => {
                     <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
-              })}
+              })} */}
+            {/* 유투브 관련된거 시도중 */}
+            <YoutubeMain />
           </StCategory1Div>
         </div>
       </StContainerDiv>
