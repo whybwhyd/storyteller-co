@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 const Select = (props) => {
   const { handleSaveOption } = props
-  const options = ['category1', 'category2', 'category3', 'category4']
+  const options = ['category1', 'category2', 'category3','category4']
   const [isOpen, setIsopen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(null)
   const handleOption = (option) => {

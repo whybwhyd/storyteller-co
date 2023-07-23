@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import DramaMain1 from '../assets/DramaMain1.jpg'
 import { getStorys } from '../axios/api'
 import { useQuery } from 'react-query'
+import { UpButton } from '../components/Button'
 import YoutubeMain from './YoutubeMain'
 
 const MainPage = () => {
@@ -19,7 +20,7 @@ const MainPage = () => {
   }
 
   return (
-    <div>
+    <div id='1'>
       <StContainerDiv>
         <StSearchImgDiv>
           <StMainImg
@@ -116,6 +117,7 @@ const MainPage = () => {
           </StCategory1Div>
         </div>
       </StContainerDiv>
+      <UpButton />
     </div>
   )
 }

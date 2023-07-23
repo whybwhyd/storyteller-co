@@ -16,7 +16,6 @@ const DetailPage = () => {
   }
   useEffect(() => {
     const fetchData = async () => {
-      // infos 정보 가져오기
       const q = query(collection(db, 'infos'))
       const querySnapshot = await getDocs(q)
       const initialInfos = []
@@ -34,7 +33,6 @@ const DetailPage = () => {
   return (
     <div id='1'>
       <St.Grid>
-        {/* 특정 id에 해당하는 정보만 렌더링 */}
         {filteredInfo && (
           <div>
             <St.DramaImg src={filteredInfo.img ? filteredInfo.img : DefaultImg} alt='이미지 업로드' />
