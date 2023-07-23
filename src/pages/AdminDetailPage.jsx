@@ -45,11 +45,11 @@ const AdminDetailPage = () => {
               <div>{filteredInfo.director}</div>
             </St.Context>
             <St.YoutubeContext>
-            <h3>youtube-privew</h3>
+              <h3>youtube-privew</h3>
               <div>
-              <Youtube videoId={filteredInfo.youtubeUrl.slice(-11)} />
+                <Youtube videoId={filteredInfo.youtubeUrl.split('v=')[1].split('&')[0]} />
               </div>
-              </St.YoutubeContext>
+            </St.YoutubeContext>
             <AdminDetailButton
               id={filteredInfo.title}
               img={filteredInfo.img}
