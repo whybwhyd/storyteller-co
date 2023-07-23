@@ -16,7 +16,6 @@ const DetailPage = () => {
   }
   useEffect(() => {
     const fetchData = async () => {
-      // infos 정보 가져오기
       const q = query(collection(db, 'infos'))
       const querySnapshot = await getDocs(q)
       const initialInfos = []
@@ -34,7 +33,6 @@ const DetailPage = () => {
   return (
     <div id='1'>
       <St.Grid>
-        {/* 특정 id에 해당하는 정보만 렌더링 */}
         {filteredInfo && (
           <div>
             <St.DramaImg src={filteredInfo.img ? filteredInfo.img : DefaultImg} alt='이미지 업로드' />
@@ -48,15 +46,12 @@ const DetailPage = () => {
               <div>{filteredInfo.director}</div>
             </St.Context>
             <St.YoutubeContext>
-            <h3>youtube-privew</h3>
+              <h3>youtube-privew</h3>
               <div>
-              <Youtube videoId={filteredInfo.youtubeUrl.split("v=")[1].split("&")[0]} />
+                <Youtube videoId={filteredInfo.youtubeUrl.split('v=')[1].split('&')[0]} />
               </div>
-              </St.YoutubeContext>
-            <DetailButton
-              handleLike={handleLike}
-              liked={liked}
-            />
+            </St.YoutubeContext>
+            <DetailButton handleLike={handleLike} liked={liked} />
           </div>
         )}
       </St.Grid>
