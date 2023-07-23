@@ -17,8 +17,6 @@ function Cards({ data }) {
             <St.CardsImg src={item.img} />
             <div>{item.category}</div>
             <div>{item.title}</div>
-            {/* <div>{item.body}</div> */}
-            {/* <div>{item.director}</div> */}
             <div>{item.createdBy}</div>
           </St.Cards>
         ))}

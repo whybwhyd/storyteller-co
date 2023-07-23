@@ -46,14 +46,12 @@ export const DeleteprofileImg = styled.input`
   display: none;
 `
 export const DramaImg = styled.img`
-  /* transform: translate(0px, 0px); */
   margin: 50px;
 `
 export const Body = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
-  /* 2px solid black; */
   width: 780px;
   height: 400px;
   margin-bottom: 50px;
@@ -66,7 +64,6 @@ export const Director = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
-  /* 2px solid black; */
   width: 780px;
   height: 400px;
   margin-bottom: 50px;
@@ -77,7 +74,7 @@ export const Director = styled.div`
 `
 export const InputYoutubeUrl = styled.input`
   transform: translate(30px, 0px);
-  margin:30px 0px 30px 0px;
+  margin: 30px 0px 30px 0px;
   width: 600px;
   height: 34px;
   border: none;

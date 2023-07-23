@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { styled } from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -11,7 +11,6 @@ import YoutubeMain from './YoutubeMain'
 const MainPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-  console.log('title=>', id)
 
   const { isLoading, data } = useQuery('infos', getStorys)
 
@@ -39,11 +38,11 @@ const MainPage = () => {
           </StFaSearchDiv>
         </StSearchImgDiv>
 
-        <h2>category1</h2>
+        <h2>로맨스</h2>
         <div>
           <StCategory1Div>
             {data
-              .filter((item) => item.category === 'category1')
+              .filter((item) => item.category === '로맨스')
               .map((info) => {
                 return (
                   <StCategoryInputDiv
@@ -53,7 +52,7 @@ const MainPage = () => {
                     }}
                   >
                     <StImg src={info.img} alt='드라마 이미지'></StImg>
-                    <div> 제목 : {info.title}</div>
+                    <StTitleDiv> 제목 : {info.title}</StTitleDiv>
                     <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
@@ -61,12 +60,12 @@ const MainPage = () => {
           </StCategory1Div>
         </div>
 
-        <h2>category2</h2>
+        <h2>액션</h2>
 
         <div>
           <StCategory1Div>
             {data
-              .filter((item) => item.category === 'category2')
+              .filter((item) => item.category === '액션')
               .map((info) => {
                 return (
                   <StCategoryInputDiv
@@ -79,7 +78,7 @@ const MainPage = () => {
                       <StImg src={info.img} alt='드라마 이미지'></StImg>
                     </div>
 
-                    <div> 제목 : {info.title}</div>
+                    <StTitleDiv> 제목 : {info.title}</StTitleDiv>
                     <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
@@ -87,23 +86,46 @@ const MainPage = () => {
           </StCategory1Div>
         </div>
 
-        <h2>category3</h2>
+        <h2>공포</h2>
         <div>
           <StCategory1Div>
             {data
-              .filter((item) => item.category === 'category3')
+              .filter((item) => item.category === '공포')
 
-              .map((story) => {
+              .map((info) => {
                 return (
                   <StCategoryInputDiv
-                    key={story.title}
+                    key={info.title}
                     onClick={() => {
-                      navigate(`/detail/:${story.id}`)
+                      navigate(`/detail/:${info.id}`)
                     }}
                   >
-                    <StImg src={story.img} alt='드라마 이미지'></StImg>
-                    <div> 제목 : {story.title}</div>
-                    <StContentsDiv> 줄거리 : {story.body}</StContentsDiv>
+                    <StImg src={info.img} alt='드라마 이미지'></StImg>
+                    <StTitleDiv> 제목 : {info.title}</StTitleDiv>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
+                  </StCategoryInputDiv>
+                )
+              })}
+          </StCategory1Div>
+        </div>
+
+        <h2>SF</h2>
+        <div>
+          <StCategory1Div>
+            {data
+              .filter((item) => item.category === 'SF')
+
+              .map((info) => {
+                return (
+                  <StCategoryInputDiv
+                    key={info.title}
+                    onClick={() => {
+                      navigate(`/detail/:${info.id}`)
+                    }}
+                  >
+                    <StImg src={info.img} alt='드라마 이미지'></StImg>
+                    <StTitleDiv> 제목 : {info.title}</StTitleDiv>
+                    <StContentsDiv> 줄거리 : {info.body}</StContentsDiv>
                   </StCategoryInputDiv>
                 )
               })}
@@ -141,11 +163,12 @@ const StSearchImgDiv = styled.div`
 const StMainImg = styled.img`
   position: relative;
 
-  height: 450px;
+  height: 500px;
   width: 1000px;
+  object-fit: cover;
+  object-position: center center;
 
-  border: 1px solid black;
-
+  margin-top: 30px;
   cursor: pointer;
 `
 
@@ -153,7 +176,7 @@ const StFaSearchDiv = styled.div`
   position: absolute;
   top: -5px;
   right: 16px;
-
+  font-size: 30px;
   cursor: pointer;
 `
 
@@ -186,6 +209,11 @@ const StImg = styled.img`
   object-position: center center;
 `
 const StContentsDiv = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+const StTitleDiv = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -11,7 +11,6 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom'
 const EditPage = () => {
   const { state } = useLocation()
   const { title, createdBy, body, director, img, category, youtubeUrl } = state
-  console.log(youtubeUrl)
   const [imgFile, setImgFile] = useState(img)
   const [showYoutubePreview, setShowYoutubePreview] = useState(false)
   const { id } = useParams()
@@ -179,7 +178,7 @@ const EditPage = () => {
             />
             <YoutubeButton
               handleYoutubeDelete={handleYoutubeDelete}
-              youtubeUrl={item.youtubeUrl.slice(-11)}
+              youtubeUrl={item.youtubeUrl.split('v=')[1].split('&')[0]}
               handleYoutubeUpload={handleYoutubeUpload}
               showYoutubePreview={showYoutubePreview}
             />

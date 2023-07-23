@@ -171,19 +171,19 @@ const WritePage = () => {
           />
         </St.Director>
         <St.YoutubeContext>
-            <div>youtube-privew</div>
-            <St.InputYoutubeUrl
-              name='youtubeUrl'
-              placeholder='미리보기 유튜브 링크를 넣어주세요'
-              value={youtubeUrl}
-              onChange={onChange}
-            />
-            <YoutubeButton
-              handleYoutubeDelete={handleYoutubeDelete}
-              youtubeUrl={youtubeUrl}
-              handleYoutubeUpload={handleYoutubeUpload}
-              showYoutubePreview={showYoutubePreview}
-            />
+          <div>youtube-privew</div>
+          <St.InputYoutubeUrl
+            name='youtubeUrl'
+            placeholder='미리보기 유튜브 링크를 넣어주세요'
+            value={youtubeUrl}
+            onChange={onChange}
+          />
+          <YoutubeButton
+            handleYoutubeDelete={handleYoutubeDelete}
+            youtubeUrl={youtubeUrl}
+            handleYoutubeUpload={handleYoutubeUpload}
+            showYoutubePreview={showYoutubePreview}
+          />
         </St.YoutubeContext>
         <WriteButton handleSave={handleSave} />
       </St.Grid>

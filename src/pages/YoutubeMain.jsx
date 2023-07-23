@@ -1,18 +1,18 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 function YoutubeMain() {
   const [playList, setPlayList] = useState([])
 
   const [videoList, setVideoList] = useState([])
+  const YOUTUBE_API_KEY_MAIN = process.env.REACT_APP_YOUTUBE_API_KEY_MAIN
 
   useEffect(() => {
     axios
       .get(
-        'https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC1QidArPD4PLF1HBP7HbcOg&maxResults=5&key=AIzaSyAvy048qvDbI3b_F_JE1-QPMdMyDrVD9Io'
+        `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC1QidArPD4PLF1HBP7HbcOg&maxResults=5&key=${YOUTUBE_API_KEY_MAIN}`
       )
       .then((res) => {
         setPlayList(res.data.items)
@@ -23,7 +23,7 @@ function YoutubeMain() {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLYZAHhM04Ewonz9bUbfaFTR_u7Bg5_BP7&maxResults=4&key=AIzaSyAvy048qvDbI3b_F_JE1-QPMdMyDrVD9Io`
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLYZAHhM04Ewonz9bUbfaFTR_u7Bg5_BP7&maxResults=4&key=${YOUTUBE_API_KEY_MAIN}`
       )
       .then((res) => {
         console.log('res=>', res)
@@ -46,7 +46,6 @@ function YoutubeMain() {
       })
       .catch(() => {})
   }, [videoList])
-  console.log('videoInfo=>', videoInfo)
 
   return (
     <div>
@@ -60,7 +59,6 @@ function YoutubeMain() {
                 </a>
 
                 <StVideoTitleDiv>{x.snippet.title}</StVideoTitleDiv>
-                <span>{x.snippet['publishedAt']} </span>
               </StYoutubePlayListDiv>
             )
           })}
@@ -81,16 +79,6 @@ const StYoutubeContainer = styled.div`
 `
 
 const StYoutubePlayListDiv = styled.div`
-  /* height: 150px;
-  width: 200px;
-
-  margin: 20px;
-
-  object-fit: cover;
-
-  border-radius: 5px 5px 5px 5px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.2); */
-
   background-color: #e9e6d8;
   border-radius: 5px;
   color: #153e4b;

@@ -23,8 +23,8 @@ export const ImgUpload = styled.div`
 `
 export const UploadImgFile = styled.img`
   transform: translate(0px, 10px);
-  width:680px;
-  height:381px;
+  width: 680px;
+  height: 381px;
 `
 export const UdLabels = styled.div`
   display: flex;
@@ -45,14 +45,12 @@ export const DeleteprofileImg = styled.input`
   display: none;
 `
 export const DramaImg = styled.img`
-  /* transform: translate(0px, 0px); */
   margin: 50px;
 `
 export const Body = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
-  /* 2px solid black; */
   width: 780px;
   height: 400px;
   margin-bottom: 50px;
@@ -64,7 +62,6 @@ export const Director = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
-  /* 2px solid black; */
   width: 780px;
   height: 400px;
   margin-bottom: 50px;

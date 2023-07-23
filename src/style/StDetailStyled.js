@@ -10,7 +10,6 @@ export const Grid = styled.div`
   justify-content: center;
 `
 export const DramaImg = styled.img`
-  /* transform: translate(0px, 0px); */
   margin: 50px;
   width: 680px;
   height: 381px;
@@ -31,14 +30,13 @@ export const Context = styled.div`
   background-color: #e9e6d8;
   border-radius: 30px;
   border: none;
-  /* 2px solid black; */
   width: 780px;
   height: 400px;
   margin-bottom: 50px;
   display: grid;
   align-content: space-evenly;
   text-align: center;
-  color:black;
+  color: black;
 `
 export const YoutubeContext = styled.div`
   border: 2px solid black;
@@ -51,22 +49,21 @@ export const YoutubeContext = styled.div`
   display: grid;
   align-content: space-evenly;
   text-align: center;
-  color:black;
+  color: black;
 `
 
-// 버튼 스타일 컴포넌트에 따로 넣기!!!!
 export const DetailButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 200px; /* 나중에 삭제할 것 */
+  margin-bottom: 200px;
 `
 export const WriteButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 200px; /* 나중에 삭제할 것 */
+  margin-bottom: 200px;
 `
 export const LikeButton = styled.button`
   background-color: #2d8675;
@@ -128,7 +125,7 @@ export const UpButton = styled.button`
 `
 export const Ytimg = styled.img`
   width: 640px;
-  height:360px;
+  height: 360px;
 `
 export const YtBtn = styled.button`
   transform: translate(-34px, 3px);

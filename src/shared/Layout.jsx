@@ -10,7 +10,6 @@ const StHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 20px;
   color: #e9e6d8;
   font-weight: 600;
 `
@@ -37,7 +36,7 @@ const StLayout = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 90vh;
-  padding: 80px;
+  padding: 40px;
   font-family: 'Hahmlet', serif;
 `
 

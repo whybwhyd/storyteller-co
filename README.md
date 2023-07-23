@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+- # 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  아웃소싱 프로젝트
 
-## Available Scripts
+  프로젝트 이름 : 스토리 텔러
 
-In the project directory, you can run:
+  프로젝트 내용 : 집이 제일 좋은 사람들의 드라마 추천 페이지.
 
-### `yarn start`
+  기능 소개 요약: youtube api 기능 및 파이어베이스를 활용하여 드라마 추천 페이지를 구성하였습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  프로젝트 목표 : 핵심 기능 이해 및 마감시간 전 완성.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- # 팀원 소개
 
-### `yarn test`
+  김진우 ENTP https://velog.io/@wlsdn090909 https://github.com/Kimjinwoo1 열심히하겠습니다. 백연주 ENFP hellokeitha.tistory.com https://github.com/hellokeitha 화팅! 이서진 ENFJ https://blossomflower2214.tistory.com/manage https://github.com/leeseojin221 맡은 기능 완성하기! 백예나 INFP https://blog.naver.com/driarydiary12 https://github.com/whybwhyd 화이팅..!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- # 페이지 소개
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  1. Main 페이지: 장르 카테고리 별 드라마를 카드 형식으로 추천합니다.
+  2. Search 페이지: 카테고리 별로 드라마를 확인할 수 있으며 결과가 없을 때 추천 목록이 뜹니다.
+  3. Detail 페이지: 카드를 누르면 드라마 세부 내용을 확인할 수 있습니다.
+  4. Edit 페이지: 드라마 별 내용을 수정할 수 있습니다. 수정 전 내용도 확인 가능합니다.
+  5. About 페이지: 페이지 소개 페이지입니다.
+  6. Admin 페이지: 글 목록 확인 및 작성이 가능합니다. 로그인을 해야 글 작성 및 수정이 가능합니다.
+  7. Write 페이지: 에디터가 글을 작성할 수 있는 페이지입니다.

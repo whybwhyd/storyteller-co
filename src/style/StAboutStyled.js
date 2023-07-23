@@ -1,33 +1,31 @@
 import styled from 'styled-components'
 
 export const AboutContent = styled.div`
-  background-color: #e9e6d8;
-  border-radius: 30px;
-  border: none;
-  /* 2px solid black; */
-  width: 780px;
-  height: 400px;
   margin-bottom: 50px;
   display: grid;
-  align-content: space-evenly;
   text-align: center;
-  color:black;
-
 `
 export const LoginBtn = styled.button`
- background-color: #2D8675;
- color: #FFFFFF;
- border: solid 1px #2D8675;
- border-radius: 10px;
- margin-bottom: 20px;
- &:hover {
+  background-color: #2d8675;
+  color: #ffffff;
+  border: solid 1px #2d8675;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 120px;
+  height: 40px;
+  font-size: 20px;
+
+  &:hover {
     height: 20px;
-    color: #2D8675;
+    color: #2d8675;
     background-color: #ffffff;
-    border: 1px solid #2D8675;
+    border: 1px solid #2d8675;
     cursor: pointer;
     font-weight: bolder;
- }
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+  }
 `
 export const Container = styled.div`
   padding-left: 20px;
@@ -43,6 +41,5 @@ export const Container = styled.div`
 export const Logo = styled.img`
   width: 600px;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto auto 50px auto;
 `
