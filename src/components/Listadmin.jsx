@@ -32,39 +32,37 @@ function Listadmin() {
     <div>
       {data.map((Post) => {
         return (
-          <ul key={Post.title}>
-            <ol>
-            <StFlexLists>
-              <Link to={`/adminDetail/:${Post.title}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <StFlex>
-                <StListTitleBox>
-                <StListTitle>
-                  {Post.title} 
-                 </StListTitle>
-                  </StListTitleBox>
-                <StListBodyBox>
-                  <StListBody>{Post.body}</StListBody>
-                </StListBodyBox>
-                </StFlex>
-              </Link>
-              <StDbutton onClick={() => deleteInfo(Post.id)}>delete</StDbutton>
-              <Link
-                to={`/edit/${Post.id}`}
-                state={{
-                  img: Post.img,
-                  title: Post.title,
-                  createdBy: Post.createdBy,
-                  body: Post.body,
-                  director: Post.director,
-                  category: Post.category,
-                  youtubeUrl: Post.youtubeUrl,
-                }}
-              >
-                <StEbutton>edit</StEbutton>
-              </Link>
+          <StUl key={Post.title}>
+            <StOl>
+              <StFlexLists>
+                <Link to={`/adminDetail/:${Post.title}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <StFlex>
+                    <StListTitleBox>
+                      <StListTitle>{Post.title}</StListTitle>
+                    </StListTitleBox>
+                    <StListBodyBox>
+                      <StListBody>{Post.body}</StListBody>
+                    </StListBodyBox>
+                  </StFlex>
+                </Link>
+                <StDbutton onClick={() => deleteInfo(Post.id)}>delete</StDbutton>
+                <Link
+                  to={`/edit/${Post.id}`}
+                  state={{
+                    img: Post.img,
+                    title: Post.title,
+                    createdBy: Post.createdBy,
+                    body: Post.body,
+                    director: Post.director,
+                    category: Post.category,
+                    youtubeUrl: Post.youtubeUrl,
+                  }}
+                >
+                  <StEbutton>edit</StEbutton>
+                </Link>
               </StFlexLists>
-            </ol>
-          </ul>
+            </StOl>
+          </StUl>
         )
       })}
     </div>
@@ -73,11 +71,17 @@ function Listadmin() {
 
 export default Listadmin
 
+export const StUl = styled.ul`
+  padding-inline: 0px;
+`
+export const StOl = styled.ol`
+  padding-inline: 0px;
+`
 export const StFlex = styled.div`
-display:flex;
+  display: flex;
 `
 export const StFlexLists = styled.div`
-display:flex;
+  display: flex;
 `
 export const StListTitle = styled.span`
   width: 100%;
@@ -89,7 +93,7 @@ export const StListTitleBox = styled.div`
   border-bottom: 2px solid white;
   width: 250px;
   padding: 4px;
-  margin-right:30px;
+  margin-right: 30px;
 `
 export const StListBodyBox = styled.div`
   border-bottom: 2px solid white;
@@ -104,13 +108,13 @@ export const StListBody = styled.div`
 `
 export const StDbutton = styled.button`
   transform: translate(20px, 5px);
-  width:80px;
-  height:30px;
-  font-size:20px;
+  width: 80px;
+  height: 30px;
+  font-size: 20px;
 `
 export const StEbutton = styled.button`
   transform: translate(30px, 5px);
-  width:80px;
-  height:30px;
-  font-size:20px;
+  width: 80px;
+  height: 30px;
+  font-size: 20px;
 `

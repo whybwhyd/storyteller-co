@@ -11,9 +11,7 @@ const Recommand = ({ data }) => {
       setVideos(searchResults)
     }
     fetchData()
-  }, [])
-
-  console.log('youtube data => ', data)
+  }, [data])
 
   return (
     <div>

@@ -32,7 +32,6 @@ const WritePage = () => {
     }))
   }
 
-  // 이미지 업로드 input의 onChange
   const saveImgFile = async () => {
     const file = imgRef.current.files[0]
     const reader = new FileReader()
@@ -44,7 +43,6 @@ const WritePage = () => {
   const deleteImg = () => {
     setImgFile('')
   }
-  // 카테고리 onchange
   const handleSaveOption = (option) => {
     setItem((prev) => ({
       ...prev,
@@ -146,9 +144,8 @@ const WritePage = () => {
           <div>editor</div>
           <St.InputCreatedBy type='text' placeholder='작성자' name='createdBy' value={createdBy} onChange={onChange} />
           <div>category</div>
-          {/* 카테고리 선택 드롭다운 */}
           <Select handleSaveOption={handleSaveOption} />
-          <div>body</div>
+          <div>content</div>
           <St.BodyTextarea
             name='body'
             cols='30'

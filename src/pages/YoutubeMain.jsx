@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 
 function YoutubeMain() {
-  const [playList, setPlayList] = useState([])
 
   const [videoList, setVideoList] = useState([])
   const YOUTUBE_API_KEY_MAIN = process.env.REACT_APP_YOUTUBE_API_KEY_MAIN
@@ -12,41 +11,13 @@ function YoutubeMain() {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC1QidArPD4PLF1HBP7HbcOg&maxResults=5&key=${YOUTUBE_API_KEY_MAIN}`
-      )
-      .then((res) => {
-        setPlayList(res.data.items)
-      })
-      .catch(() => {})
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(
         `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLYZAHhM04Ewonz9bUbfaFTR_u7Bg5_BP7&maxResults=4&key=${YOUTUBE_API_KEY_MAIN}`
       )
       .then((res) => {
-        console.log('res=>', res)
         setVideoList(res.data.items)
       })
       .catch(() => {})
-  }, [])
-
-  let videoID = []
-
-  let [videoInfo, setVideoInfo] = useState([])
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=vwxKPgn3Mbo&id=VRI3GVZjFrM&id=CCOANmV-Qpg&id=aPAu-ePYfLg&id=stzQyxvSSt0&id=e0_a93-pabk&id=bNoJiT8cQ3Y&id=AapSj0ncwqU&id=v7WYUm2OyKI&id=b_u7pEZ5dUc&maxResults=4&key=${YOUTUBE_API_KEY_MAIN}`
-      )
-      .then((res) => {
-        console.log(res)
-        setVideoInfo(res.data.items)
-      })
-      .catch(() => {})
-  }, [videoList])
+  }, [YOUTUBE_API_KEY_MAIN])
 
   return (
     <div>
@@ -58,7 +29,6 @@ function YoutubeMain() {
                 <a href={`https://www.youtube.com/watch?v=${x.snippet.resourceId.videoId}`}>
                   <StImgDiv src={x.snippet.thumbnails.medium['url']} alt='' />
                 </a>
-
                 <StVideoTitleDiv>{x.snippet.title}</StVideoTitleDiv>
               </StYoutubePlayListDiv>
             )

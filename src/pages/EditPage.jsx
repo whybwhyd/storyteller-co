@@ -147,7 +147,7 @@ const EditPage = () => {
             />
             {/* 카테고리 드롭다운 컴포넌트*/}
             <EditCategory handleSaveOption={handleSaveOption} category={category} />
-            <div>body</div>
+            <div>content</div>
             <St.BodyTextarea
               name='body'
               cols='30'

@@ -88,11 +88,17 @@ function LoginForm({ closeModal }) {
 
               <St.LeftBox>ID</St.LeftBox>
 
-              <St.Input placeholder='' name='email' value={email} onChange={onChange} />
+              <St.Input placeholder='이메일을 입력해주세요.' name='email' value={email} onChange={onChange} />
 
               <St.LeftBox>PASSWORD </St.LeftBox>
 
-              <St.Input placeholder='' name='password' type='password' value={password} onChange={onChange} />
+              <St.Input
+                placeholder='비밀번호를 입력해주세요'
+                name='password'
+                type='password'
+                value={password}
+                onChange={onChange}
+              />
               <St.LoginMessage>{loginMessage}</St.LoginMessage>
               <St.SignBtn type='submit'>로그인</St.SignBtn>
             </St.ModalContents>
