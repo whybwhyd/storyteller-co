@@ -1,6 +1,6 @@
 # 프로젝트
 
-![Alt text](projectMain.png)
+![Alt text](./src/assets/projectMain.png)
 
 <b>프로젝트 이름</b> : 스토리 텔러 <br/>
 
